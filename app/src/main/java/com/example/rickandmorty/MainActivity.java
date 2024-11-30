@@ -31,19 +31,5 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        EpisodioViewModel episodioViewModel = new ViewModelProvider(this).get(EpisodioViewModel.class);
-        episodioViewModel.cargarEpisodios(new EpisodiosCallback() {
-            @Override
-            public void onSuccess(List<Episodio> episodios) {
-                // Aquí puedes manejar los episodios cuando se carguen correctamente
-                Log.d("EPISODIOS CARGADOS", "Total episodios: " + episodios.size());
-                for (Episodio episodio : episodios) {
-                    Log.d("EPISODIO", "Nombre: " + episodio.getNombre());
-                }
-            }
-        });
     }
-
-
 }

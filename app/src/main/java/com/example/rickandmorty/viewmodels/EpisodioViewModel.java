@@ -5,27 +5,42 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.MutableLiveData;
 
-import com.example.rickandmorty.utils.interfacesApi.EpisodiosCallback;
-import com.example.rickandmorty.utils.interfacesApi.RMApiService;
 import com.example.rickandmorty.models.Episodio;
 import com.example.rickandmorty.models.EpisodioList;
 import com.example.rickandmorty.utils.GsonConfig;
+import com.example.rickandmorty.utils.interfacesApi.RMApiService;
 import com.google.gson.Gson;
 
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Getter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * ViewModel para gestionar la carga de episodios desde la API de Rick and Morty.
+ * La clase maneja la solicitud de episodios, la paginación de la respuesta y la actualización
+ * de datos en el UI a través de LiveData.
+ */
 public class EpisodioViewModel extends AndroidViewModel{
     private final RMApiService rmApiService;
+    @Getter
+    private final MutableLiveData<List<Episodio>> episodiosLiveData = new MutableLiveData<>();
+    @Getter
+    private final MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
 
+    /**
+     * Constructor del ViewModel. Inicializa el servicio API utilizando Retrofit.
+     *
+     * @param application La aplicación actual.
+     */
     public EpisodioViewModel(@NonNull Application application) {
         super(application);
 
@@ -39,53 +54,45 @@ public class EpisodioViewModel extends AndroidViewModel{
     }
 
     /**
-     * Realiza una solicitud a la API para obtener la lista de episodios.
-     * Cuando recibe la respuesta, procesa los episodios y los agrega a la lista proporcionada.
-     * Si no hay más episodios disponibles en páginas posteriores, se cargarán automáticamente.
-     *
-     * @param callback El callback que maneja la respuesta de la solicitud.
-     *
-     * @see #procesarRespuesta(Response, List, EpisodiosCallback)
+     * Inicia la carga de episodios desde la API de Rick and Morty.
+     * Realiza la solicitud y actualiza el LiveData con la lista de episodios.
+     * Si existen páginas adicionales, se cargarán automáticamente.
      */
-    public void cargarEpisodios(EpisodiosCallback callback) {
-
+    public void cargarEpisodios() {
+        isLoading.setValue(true);
         List<Episodio> listadoEpisodios = new ArrayList<>();
 
         Call<EpisodioList> call = rmApiService.getEpisodioList();
         call.enqueue(new Callback<EpisodioList>() {
             @Override
-            public void onResponse(Call<EpisodioList> call, Response<EpisodioList> response) {
-                procesarRespuesta(response, listadoEpisodios, callback);
+            public void onResponse(@NonNull Call<EpisodioList> call, @NonNull Response<EpisodioList> response) {
+                procesarRespuesta(response, listadoEpisodios);
             }
 
             @Override
-            public void onFailure(Call<EpisodioList> call, Throwable throwable) {
+            public void onFailure(@NonNull Call<EpisodioList> call, @NonNull Throwable throwable) {
                 manejarError(throwable);
             }
         });
     }
 
     /**
-     * Comprueba si existe una siguiente página de contenido en la API para seguir cargando Episodios.
-     * Si hay más episodios, realiza otra solicitud a la siguiente página.
+     * Carga las siguientes páginas de episodios si la respuesta contiene un enlace hacia la siguiente página.
      *
-     * @param siguienteUrl La siguiente página donde se buscarán episodios. Si es nula, no realizará más acciones
-     * @param listaEpisodios La lista donde se almacenarán los siguientes resultados
-     * @param callback El callback que se utilizará para manejar la respuesta de la solicitud.
-     *
-     * @see #procesarRespuesta(Response, List, EpisodiosCallback)
+     * @param siguienteUrl La URL de la siguiente página de episodios a cargar.
+     * @param listaEpisodios La lista donde se agregarán los episodios obtenidos.
      */
-    private void cargarSiguientesPaginas(URI siguienteUrl, List<Episodio> listaEpisodios, EpisodiosCallback callback){
+    private void cargarSiguientesPaginas(URI siguienteUrl, List<Episodio> listaEpisodios){
         if (siguienteUrl != null) {
             Call<EpisodioList> callSiguiente = rmApiService.getEpisodioListFromUrl(siguienteUrl);
             callSiguiente.enqueue(new Callback<EpisodioList>() {
                 @Override
-                public void onResponse(Call<EpisodioList> call, Response<EpisodioList> response) {
-                    procesarRespuesta(response, listaEpisodios, callback);
+                public void onResponse(@NonNull Call<EpisodioList> call, @NonNull Response<EpisodioList> response) {
+                    procesarRespuesta(response, listaEpisodios);
                 }
 
                 @Override
-                public void onFailure(Call<EpisodioList> call, Throwable throwable) {
+                public void onFailure(@NonNull Call<EpisodioList> call, @NonNull Throwable throwable) {
                     manejarError(throwable);
                 }
             });
@@ -93,26 +100,23 @@ public class EpisodioViewModel extends AndroidViewModel{
     }
 
     /**
-     * Procesa la respuesta de la API, agregando los episodios a la lista proporcionada.
-     * Si hay más episodios disponibles en páginas siguientes, se cargan automáticamente.
+     * Procesa la respuesta de la API agregando los episodios a la lista proporcionada.
+     * Si hay más episodios disponibles, se realizará una solicitud adicional para obtenerlos.
      *
      * @param response La respuesta de la API que contiene la lista de episodios.
-     * @param listaEpisodios La lista de episodios donde se almacenarán los episodios obtenidos.
-     * @param callback El callback que se llama cuando los episodios se cargan con éxito o si ocurre un error.
-     *
-     * @see #cargarEpisodios(EpisodiosCallback)
-     * @see #cargarSiguientesPaginas(URI, List, EpisodiosCallback)
+     * @param listaEpisodios La lista de episodios donde se agregarán los nuevos episodios.
      */
-    private void procesarRespuesta(Response<EpisodioList> response, List<Episodio> listaEpisodios, EpisodiosCallback callback) {
+    private void procesarRespuesta(Response<EpisodioList> response, List<Episodio> listaEpisodios) {
         if (response.body() != null) {
             EpisodioList episodioList = response.body();
             listaEpisodios.addAll(episodioList.getResultadosEpisodio());
 
             if (episodioList.getInfo().getSiguiente() != null) {
                 URI siguienteUrl = episodioList.getInfo().getSiguiente();
-                cargarSiguientesPaginas(siguienteUrl, listaEpisodios, callback);
+                cargarSiguientesPaginas(siguienteUrl, listaEpisodios);
             } else {
-                callback.onSuccess(listaEpisodios);
+                episodiosLiveData.setValue(listaEpisodios);
+                isLoading.setValue(false);
             }
         }
     }
@@ -122,7 +126,6 @@ public class EpisodioViewModel extends AndroidViewModel{
      * Registra un mensaje de error en los logs con el mensaje de excepción proporcionado.
      *
      * @param throwable El objeto que contiene la excepción que ocurrió durante la solicitud a la API.
-     *                  El mensaje de esta excepción será registrado en los logs de la aplicación.
      */
     private void manejarError(Throwable throwable){
         Log.e("API ERROR", "EPISODIOS: " + throwable.getMessage());
