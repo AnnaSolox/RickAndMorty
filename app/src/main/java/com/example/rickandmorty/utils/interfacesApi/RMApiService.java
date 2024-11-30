@@ -16,7 +16,7 @@ import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 public interface RMApiService {
-    String BASE_URL = "https://rickandmortyapi.com/api/";
+    //"https://rickandmortyapi.com/api/";
 
     //Búsuqeda de lista de elementos de la misma clase
     //endpoint personajes

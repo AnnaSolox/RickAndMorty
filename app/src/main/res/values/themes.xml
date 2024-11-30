@@ -2,8 +2,29 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.RickAndMorty" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/lightAcidGreen</item>
+        <item name="colorPrimaryDark">@color/darkAcidGreen</item>
+        <item name="colorSecondary">@color/acidBlue</item>
+        <item name="fontFamily">@font/manrope_semibold</item>
+
+        <item name="materialButtonStyle">@style/botones</item>
+
     </style>
 
     <style name="Theme.RickAndMorty" parent="Base.Theme.RickAndMorty" />
+
+    <style name="titulosFragments">
+        <item name="fontFamily">@font/oswald</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/acidBlue</item>
+    </style>
+
+    <style name="botones" parent="Widget.MaterialComponents.Button">
+        <item name="fontFamily">@font/oswald</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="backgroundTint">@color/lightAcidGreen</item>
+        <item name="android:textColor">@color/darkAcidGreen</item>
+    </style>
 </resources>
