@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeFragment">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/grey900"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/background_dots"
+        android:scaleY="1.5"
+        android:scaleX="1.5"
+        android:alpha=".25"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gv1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gv2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gh1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gh2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".55" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gh3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".58" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gh4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".9" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/rick_and_morty_logo_v"
+        app:layout_constraintBottom_toTopOf="@+id/gh2"
+        app:layout_constraintEnd_toStartOf="@+id/gv2"
+        app:layout_constraintStart_toEndOf="@id/gv1"
+        app:layout_constraintTop_toBottomOf="@id/gh1"
+        android:adjustViewBounds="true"/>
+
+    <Button
+        android:id="@+id/btnPersonajes"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:text="@string/btnPersonajes"
+        app:layout_constraintBottom_toTopOf="@id/btnLocalizaciones"
+        app:layout_constraintEnd_toStartOf="@+id/gv2"
+        app:layout_constraintStart_toEndOf="@id/gv1"
+        app:layout_constraintTop_toBottomOf="@id/gh3"/>
+
+    <Button
+        android:id="@+id/btnLocalizaciones"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:text="@string/btnLocalizaciones"
+        app:layout_constraintBottom_toTopOf="@id/btnEpisodios"
+        app:layout_constraintEnd_toStartOf="@+id/gv2"
+        app:layout_constraintStart_toEndOf="@id/gv1"
+        app:layout_constraintTop_toBottomOf="@id/btnPersonajes" />
+
+    <Button
+        android:id="@+id/btnEpisodios"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:text="@string/btnEpisodios"
+        app:layout_constraintBottom_toTopOf="@id/gh4"
+        app:layout_constraintEnd_toStartOf="@+id/gv2"
+        app:layout_constraintStart_toEndOf="@id/gv1"
+        app:layout_constraintTop_toBottomOf="@id/btnLocalizaciones" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

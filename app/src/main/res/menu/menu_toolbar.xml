@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/personajes"
+        android:title="Personajes"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/localizaciones"
+        android:title="Localizaciones"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/episodios"
+        android:title="Episodios"
+        app:showAsAction="never" />
+</menu>
