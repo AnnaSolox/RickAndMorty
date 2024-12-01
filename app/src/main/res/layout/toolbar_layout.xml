@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.appbar.CollapsingToolbarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.appbar.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.material.appbar.MaterialToolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/grey900">
+        android:background="@color/grey900"
+        app:menu="@menu/menu_toolbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -32,6 +33,6 @@
                 android:adjustViewBounds="true" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </com.google.android.material.appbar.MaterialToolbar>
+    </androidx.appcompat.widget.Toolbar>
 
-</com.google.android.material.appbar.CollapsingToolbarLayout>
+</com.google.android.material.appbar.AppBarLayout>

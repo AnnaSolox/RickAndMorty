@@ -8,6 +8,7 @@ import lombok.Data;
 
 @Data
 public class LocalizacionList {
+    private Info info;
     @SerializedName("results")
     private ArrayList<Localizacion> resultadosLocalizacion;
 

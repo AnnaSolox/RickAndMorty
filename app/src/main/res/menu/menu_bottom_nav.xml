@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/personajesFragment"
-        android:title="Personajes"
-        app:showAsAction="never" />
+        android:icon="@drawable/ic_rick_pj"
+        android:title="Personajes" />
     <item
         android:id="@+id/localizacionesFragment"
-        android:title="Localizaciones"
-        app:showAsAction="never" />
+        android:icon="@drawable/ic_planeta"
+        android:title="Localizaciones"/>
     <item
         android:id="@+id/episodiosFragment"
-        android:title="Episodios"
-        app:showAsAction="never" />
+        android:icon="@drawable/ic_episodios"
+        android:title="Episodios" />
 </menu>

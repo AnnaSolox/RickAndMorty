@@ -31,10 +31,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        navController = Navigation.findNavController(view);
-        binding.btnEpisodios.setOnClickListener(v -> navController.navigate(R.id.action_homeFragment_to_episodiosFragment));
-        binding.btnLocalizaciones.setOnClickListener(v -> navController.navigate(R.id.action_homeFragment_to_localizacionesFragment));
-        binding.btnPersonajes.setOnClickListener(v -> navController.navigate(R.id.action_homeFragment_to_personajesFragment));
+
 
     }
 }

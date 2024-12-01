@@ -17,8 +17,10 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.rickandmorty.adaptersRecyclerView.EpisodiosAdapter;
+import com.example.rickandmorty.databinding.BottomNavViewBinding;
 import com.example.rickandmorty.databinding.FragmentEpisodiosBinding;
 import com.example.rickandmorty.viewmodels.EpisodioViewModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class EpisodiosFragment extends Fragment {
     private FragmentEpisodiosBinding binding;
@@ -36,10 +38,14 @@ public class EpisodiosFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        navController = Navigation.findNavController(view);
+       /* navController = Navigation.findNavController(view);
         Toolbar toolbar = view.findViewById(R.id.toolbar);
-        toolbar.inflateMenu(R.menu.menu_toolbar);
-        toolbar.setOnMenuItemClickListener(this::manejarClicItemMenu);
+        toolbar.inflateMenu(R.menu.menu_toolbar);*/
+        /*BottomNavigationView bottomNavigationView = view.findViewById(R.id.bottom_nav_view);
+        bottomNavigationView.inflateMenu(R.menu.menu_bottom_nav);*/
+
+     /*   toolbar.setOnMenuItemClickListener(this::manejarClicItemMenu);*/
+        //bottomNavigationView.setOnItemSelectedListener(this::manejarClicItemMenu);
 
 
         EpisodiosAdapter episodiosAdapter = new EpisodiosAdapter();
@@ -57,7 +63,7 @@ public class EpisodiosFragment extends Fragment {
 
     }
 
-    private boolean manejarClicItemMenu(MenuItem item){
+    /*private boolean manejarClicItemMenu(MenuItem item){
         if(item.getItemId() == R.id.personajes){
             navController.navigate(R.id.action_episodiosFragment_to_personajesFragment);
             return true;
@@ -68,6 +74,6 @@ public class EpisodiosFragment extends Fragment {
             return true;
         }
         return false;
-    }
+    }*/
 
 }

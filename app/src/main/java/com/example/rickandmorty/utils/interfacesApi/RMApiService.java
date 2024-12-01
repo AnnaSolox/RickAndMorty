@@ -21,11 +21,11 @@ public interface RMApiService {
     //Búsuqeda de lista de elementos de la misma clase
     //endpoint personajes
     @GET("character")
-    Call<PersonajeList> getPersonajeList(@Query("limit") int limit, @Query("offset") int offset);
+    Call<PersonajeList> getPersonajeList();
 
     //endpoint localizaciones
     @GET("location")
-    Call<LocalizacionList> getLocalizacionList(@Query("limit") int limit, @Query("offset") int offset);
+    Call<LocalizacionList> getLocalizacionList();
 
     //endpoint episodios
     @GET("episode")
@@ -34,6 +34,12 @@ public interface RMApiService {
     //Cargar siguientes paginas de los modelos
     @GET
     Call<EpisodioList> getEpisodioListFromUrl(@Url URI url);
+
+    @GET
+    Call<LocalizacionList> getLocalizacionFromUrl(@Url URI url);
+
+    @GET
+    Call<PersonajeList> getPersonajeFromUrl(@Url URI url);
 
 
     //Busqueda de elementos por ID
