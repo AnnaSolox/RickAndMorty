@@ -28,7 +28,7 @@ public class Personaje {
     @SerializedName("location")
     private Localizacion localizacion;
     @SerializedName("image")
-    private URI imagen;
+    private String imagen;
     @SerializedName("episode")
     private List<URI> episodios;
 

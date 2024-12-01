@@ -9,9 +9,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.rickandmorty.models.Episodio;
 import com.example.rickandmorty.models.EpisodioList;
-import com.example.rickandmorty.utils.GsonConfig;
-import com.example.rickandmorty.utils.interfacesApi.RMApiService;
-import com.google.gson.Gson;
+import com.example.rickandmorty.utils.RMApiService;
+import com.example.rickandmorty.utils.RetrofitBuilder;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -22,7 +21,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * ViewModel para gestionar la carga de episodios desde la API de Rick and Morty.
@@ -44,12 +42,7 @@ public class EpisodioViewModel extends AndroidViewModel{
     public EpisodioViewModel(@NonNull Application application) {
         super(application);
 
-        Gson gson = GsonConfig.getGson();
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://rickandmortyapi.com/api/")
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
+        Retrofit retrofit = RetrofitBuilder.getRetrofitBuilder();
         rmApiService = retrofit.create(RMApiService.class);
     }
 
@@ -110,6 +103,7 @@ public class EpisodioViewModel extends AndroidViewModel{
         if (response.body() != null) {
             EpisodioList episodioList = response.body();
             listaEpisodios.addAll(episodioList.getResultadosEpisodio());
+            episodiosLiveData.setValue(listaEpisodios);
 
             if (episodioList.getInfo().getSiguiente() != null) {
                 URI siguienteUrl = episodioList.getInfo().getSiguiente();

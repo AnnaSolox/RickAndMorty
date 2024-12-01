@@ -56,6 +56,9 @@ dependencies {
     compileOnly(libs.lombok)
     annotationProcessor (libs.lombok.v11824)
 
+    // Glide
+    implementation(libs.glide)
+
 
 
 }

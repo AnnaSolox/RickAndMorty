@@ -65,7 +65,7 @@ public class SecondActivity extends AppCompatActivity {
                 R.id.episodiosFragment, R.id.personajesFragment, R.id.localizacionesFragment
         ).build();
 
-        NavigationUI.setupWithNavController(binding.bottomNav.bottomNavView, navController);
+        NavigationUI.setupWithNavController(binding.bottomNav, navController);
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
     }
 

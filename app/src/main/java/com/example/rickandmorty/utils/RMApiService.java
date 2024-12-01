@@ -1,4 +1,4 @@
-package com.example.rickandmorty.utils.interfacesApi;
+package com.example.rickandmorty.utils;
 
 import com.example.rickandmorty.models.Episodio;
 import com.example.rickandmorty.models.EpisodioList;
@@ -12,7 +12,6 @@ import java.net.URI;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 public interface RMApiService {
