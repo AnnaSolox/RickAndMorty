@@ -34,7 +34,7 @@ public class EpisodiosFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         episodioViewModel = new ViewModelProvider(requireActivity()).get(EpisodioViewModel.class);
-        episodiosAdapter = new EpisodiosAdapter(episodioViewModel, NavHostFragment.findNavController(this));
+        episodiosAdapter = new EpisodiosAdapter(episodioViewModel, NavHostFragment.findNavController(this), R.id.action_episodiosFragment_to_mostrarEpisodioFragment);
 
         binding.itemRecycler.setAdapter(episodiosAdapter);
         binding.itemRecycler.setLayoutManager(new LinearLayoutManager(getContext()));

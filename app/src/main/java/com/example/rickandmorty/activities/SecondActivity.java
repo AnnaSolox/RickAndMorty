@@ -1,9 +1,13 @@
 package com.example.rickandmorty.activities;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.window.OnBackInvokedDispatcher;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -23,6 +27,8 @@ import com.example.rickandmorty.databinding.ActivityMainBinding;
 import com.example.rickandmorty.databinding.ActivitySecondBinding;
 import com.example.rickandmorty.databinding.BottomNavViewBinding;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class SecondActivity extends AppCompatActivity {
@@ -54,20 +60,39 @@ public class SecondActivity extends AppCompatActivity {
                 R.id.episodiosFragment, R.id.personajesFragment, R.id.localizacionesFragment
         ).build();
 
-        NavigationUI.setupWithNavController(binding.bottomNav, navController);
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(binding.bottomNav, navController);
+        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+            // Lista de fragmentos donde se muestra el BottomNavigationView
+            List<Integer> fragmentsConBottomNav = Arrays.asList(
+                    R.id.episodiosFragment,
+                    R.id.personajesFragment,
+                    R.id.localizacionesFragment
+            );
+
+            if (fragmentsConBottomNav.contains(destination.getId())) {
+                binding.bottomNav.setVisibility(View.VISIBLE);
+            } else {
+                binding.bottomNav.setVisibility(View.GONE);
+            }
+        });
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_toolbar, menu);
+
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        return NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.personajesFragment) {
+            navController.navigate(R.id.personajesFragment);
+            return true;
+        } else {
+            return NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item);
+        }
     }
-
 
 }

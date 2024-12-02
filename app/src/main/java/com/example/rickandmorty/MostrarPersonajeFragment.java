@@ -21,6 +21,8 @@ import com.example.rickandmorty.utils.RecyclerViewEpisodios;
 import com.example.rickandmorty.viewmodels.EpisodioViewModel;
 import com.example.rickandmorty.viewmodels.PersonajeViewModel;
 
+import java.util.Objects;
+
 public class MostrarPersonajeFragment extends Fragment {
     private FragmentMostrarPersonajeBinding binding;
     private EpisodioViewModel episodioViewModel;
@@ -37,11 +39,9 @@ public class MostrarPersonajeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        BottomNavUtil.ocultarBottomNavigationView(getActivity(), R.id.bottomNav);
-
         PersonajeViewModel personajeViewModel = new ViewModelProvider(requireActivity()).get(PersonajeViewModel.class);
         episodioViewModel = new ViewModelProvider(requireActivity()).get(EpisodioViewModel.class);
-        episodiosAdapter = new EpisodiosAdapter(episodioViewModel, NavHostFragment.findNavController(this));
+        episodiosAdapter = new EpisodiosAdapter(episodioViewModel, NavHostFragment.findNavController(this), R.id.action_mostrarPersonajeFragment_to_mostrarEpisodioFragment);
 
         RecyclerViewEpisodios recyclerViewEpisodios = new RecyclerViewEpisodios(binding.itemRecyclerFragment.itemRecycler, episodioViewModel, episodiosAdapter);
         recyclerViewEpisodios.setupRecyclerView(getContext());
@@ -53,7 +53,7 @@ public class MostrarPersonajeFragment extends Fragment {
                 binding.titulo.setText(personaje.getNombre());
                 binding.valorEstado.setText(personaje.getEstado());
                 binding.valorEspecie.setText(personaje.getEspecie());
-                binding.valorTipo.setText(personaje.getTipo());
+                binding.valorTipo.setText(!Objects.equals(personaje.getTipo(), "") ? personaje.getTipo() : "unknown");
                 binding.valorGenero.setText(personaje.getGenero());
                 binding.valorOrigen.setText(personaje.getOrigen().getNombre());
                 binding.valorLocalizacion.setText(personaje.getLocalizacion().getNombre());
@@ -71,12 +71,5 @@ public class MostrarPersonajeFragment extends Fragment {
                 Log.e("Personajes", "La lista de personajes está vacía.");
             }
         });
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-
-        BottomNavUtil.mostrarBottomNavigationView(getActivity(), R.id.bottomNav);
     }
 }

@@ -33,7 +33,7 @@ public class PersonajesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         personajeViewModel = new ViewModelProvider(requireActivity()).get(PersonajeViewModel.class);
-        personajesAdapter = new PersonajesAdapter(personajeViewModel, NavHostFragment.findNavController(this));
+        personajesAdapter = new PersonajesAdapter(personajeViewModel, NavHostFragment.findNavController(this), R.id.action_personajesFragment_to_mostrarPersonajeFragment);
         RecyclerViewPersonajes recyclerViewPersonajes = new RecyclerViewPersonajes(binding.itemRecycler, personajeViewModel, personajesAdapter);
         recyclerViewPersonajes.setupRecyclerView(getContext());
         recyclerViewPersonajes.observarPersonajes(getViewLifecycleOwner());

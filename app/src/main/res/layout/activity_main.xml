@@ -73,24 +73,14 @@
         android:adjustViewBounds="true"/>
 
     <Button
-        android:id="@+id/btnPersonajes"
+        android:id="@+id/btnQuizz"
         android:layout_width="0dp"
         android:layout_height="65dp"
-        android:text="@string/btnPersonajes"
-        app:layout_constraintBottom_toTopOf="@id/btnLocalizaciones"
-        app:layout_constraintEnd_toStartOf="@+id/gv2"
-        app:layout_constraintStart_toEndOf="@id/gv1"
-        app:layout_constraintTop_toBottomOf="@id/gh8"/>
-
-    <Button
-        android:id="@+id/btnLocalizaciones"
-        android:layout_width="0dp"
-        android:layout_height="65dp"
-        android:text="@string/btnLocalizaciones"
+        android:text="@string/btnQuizz"
         app:layout_constraintBottom_toTopOf="@id/btnRickypedia"
         app:layout_constraintEnd_toStartOf="@+id/gv2"
         app:layout_constraintStart_toEndOf="@id/gv1"
-        app:layout_constraintTop_toBottomOf="@id/btnPersonajes" />
+        app:layout_constraintTop_toBottomOf="@id/gh8" />
 
     <Button
         android:id="@+id/btnRickypedia"
@@ -100,6 +90,6 @@
         app:layout_constraintBottom_toTopOf="@id/gh4"
         app:layout_constraintEnd_toStartOf="@+id/gv2"
         app:layout_constraintStart_toEndOf="@id/gv1"
-        app:layout_constraintTop_toBottomOf="@id/btnLocalizaciones" />
+        app:layout_constraintTop_toBottomOf="@id/btnQuizz" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

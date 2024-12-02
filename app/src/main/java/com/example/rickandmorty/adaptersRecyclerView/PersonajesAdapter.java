@@ -8,7 +8,6 @@ import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.rickandmorty.R;
 import com.example.rickandmorty.databinding.ItemPersonajeBinding;
 import com.example.rickandmorty.models.Personaje;
 import com.example.rickandmorty.utils.FiltradoUtilidad;
@@ -22,10 +21,12 @@ public class PersonajesAdapter extends RecyclerView.Adapter<PersonajeViewHolder>
     private List<Personaje> personajesOriginal;
     private final NavController navController;
     private final PersonajeViewModel personajeViewModel;
+    private final int actionId;
 
-    public PersonajesAdapter(PersonajeViewModel personajeViewModel, NavController navController){
+    public PersonajesAdapter(PersonajeViewModel personajeViewModel, NavController navController, int actionId){
         this.personajeViewModel = personajeViewModel;
         this.navController = navController;
+        this.actionId = actionId;
     }
 
     @NonNull
@@ -42,7 +43,7 @@ public class PersonajesAdapter extends RecyclerView.Adapter<PersonajeViewHolder>
 
         holder.itemView.setOnClickListener(view -> {
             personajeViewModel.seleccionar(personaje);
-            navController.navigate(R.id.action_personajesFragment_to_mostrarPersonajeFragment);
+            navController.navigate(actionId);
         });
     }
 

@@ -22,10 +22,12 @@ public class EpisodiosAdapter extends RecyclerView.Adapter<EpisodioViewHolder> {
     private List<Episodio> episodiosOriginal;
     private final NavController navController;
     private final EpisodioViewModel episodioViewModel;
+    private final int actionId;
 
-    public EpisodiosAdapter(EpisodioViewModel episodioViewModel, NavController navController){
+    public EpisodiosAdapter(EpisodioViewModel episodioViewModel, NavController navController, int actionId){
         this.episodioViewModel = episodioViewModel;
         this.navController = navController;
+        this.actionId = actionId;
     }
 
     @NonNull
@@ -43,7 +45,7 @@ public class EpisodiosAdapter extends RecyclerView.Adapter<EpisodioViewHolder> {
 
         holder.itemView.setOnClickListener(view -> {
             episodioViewModel.seleccionar(episodio);
-            navController.navigate(R.id.action_episodiosFragment_to_mostrarEpisodioFragment);
+            navController.navigate(actionId);
         });
 
     }

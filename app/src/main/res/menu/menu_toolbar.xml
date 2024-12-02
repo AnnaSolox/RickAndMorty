@@ -2,15 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/quizz"
+        android:title="Quizz"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/personajesFragment"
         android:title="Personajes"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/localizacionesFragment"
-        android:title="Localizaciones"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/episodiosFragment"
-        android:title="Episodios"
         app:showAsAction="never" />
 </menu>

@@ -36,11 +36,9 @@ public class MostrarLocalizacionFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        BottomNavUtil.ocultarBottomNavigationView(getActivity(), R.id.bottomNav);
-
         LocalizacionViewModel localizacionViewModel = new ViewModelProvider(requireActivity()).get(LocalizacionViewModel.class);
         personajeViewModel = new ViewModelProvider(requireActivity()).get(PersonajeViewModel.class);
-        personajesAdapter = new PersonajesAdapter(personajeViewModel, NavHostFragment.findNavController(this));
+        personajesAdapter = new PersonajesAdapter(personajeViewModel, NavHostFragment.findNavController(this), R.id.action_mostrarLocalizacionFragment_to_mostrarPersonajeFragment);
         RecyclerViewPersonajes recyclerViewPersonajes = new RecyclerViewPersonajes(binding.itemRecyclerFragment.itemRecycler, personajeViewModel, personajesAdapter);
         recyclerViewPersonajes.setupRecyclerView(getContext());
         recyclerViewPersonajes.observarPersonajes(getViewLifecycleOwner());
@@ -49,7 +47,9 @@ public class MostrarLocalizacionFragment extends Fragment {
         localizacionViewModel.seleccionada().observe(getViewLifecycleOwner(), localizacion -> {
             if(localizacion != null){
                 binding.titulo.setText(localizacion.getNombre());
+                binding.descriptionInfo1.setText("Tipo");
                 binding.info1.setText(localizacion.getDimension());
+                binding.descriptionInfo2.setText("Dimensión:");
                 binding.info2.setText(localizacion.getTipo());
                 binding.itemRecyclerFragment.tituloRecycler.setText("Residentes");
                 personajeViewModel.cargarPersonajesPorIds(localizacion.getResidentes());
@@ -67,11 +67,5 @@ public class MostrarLocalizacionFragment extends Fragment {
             }
         });
 
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        BottomNavUtil.mostrarBottomNavigationView(getActivity(), R.id.bottomNav);
     }
 }

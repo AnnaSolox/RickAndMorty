@@ -56,5 +56,9 @@
         android:id="@+id/mostrarPersonajeFragment"
         android:name="com.example.rickandmorty.MostrarPersonajeFragment"
         android:label="fragment_mostrar_personaje"
-        tools:layout="@layout/fragment_mostrar_personaje" />
+        tools:layout="@layout/fragment_mostrar_personaje" >
+        <action
+            android:id="@+id/action_mostrarPersonajeFragment_to_mostrarEpisodioFragment"
+            app:destination="@id/mostrarEpisodioFragment" />
+    </fragment>
 </navigation>

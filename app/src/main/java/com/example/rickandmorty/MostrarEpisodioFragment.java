@@ -10,11 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.rickandmorty.adaptersRecyclerView.PersonajesAdapter;
-import com.example.rickandmorty.databinding.BottomNavViewBinding;
 import com.example.rickandmorty.databinding.FragmentLocalizacionEpisodioBinding;
 import com.example.rickandmorty.utils.BottomNavUtil;
 import com.example.rickandmorty.utils.RecyclerViewPersonajes;
@@ -37,11 +35,9 @@ public class MostrarEpisodioFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        BottomNavUtil.ocultarBottomNavigationView(getActivity(), R.id.bottomNav);
-
         EpisodioViewModel episodioViewModel = new ViewModelProvider(requireActivity()).get(EpisodioViewModel.class);
         personajeViewModel = new ViewModelProvider(requireActivity()).get(PersonajeViewModel.class);
-        personajesAdapter = new PersonajesAdapter(personajeViewModel, NavHostFragment.findNavController(this));
+        personajesAdapter = new PersonajesAdapter(personajeViewModel, NavHostFragment.findNavController(this), R.id.action_mostrarEpisodioFragment_to_mostrarPersonajeFragment);
         RecyclerViewPersonajes recyclerViewPersonajes = new RecyclerViewPersonajes(binding.itemRecyclerFragment.itemRecycler, personajeViewModel, personajesAdapter);
         recyclerViewPersonajes.setupRecyclerView(getContext());
         recyclerViewPersonajes.observarPersonajes(getViewLifecycleOwner());
@@ -50,7 +46,9 @@ public class MostrarEpisodioFragment extends Fragment {
         episodioViewModel.seleccionado().observe(getViewLifecycleOwner(), episodio -> {
             if(episodio != null){
                 binding.titulo.setText(episodio.getNombre());
+                binding.descriptionInfo1.setText("Teporada/Epìsodio");
                 binding.info1.setText(episodio.getIdentificador());
+                binding.descriptionInfo2.setText("Fecha lanzamiento");
                 binding.info2.setText(episodio.getFechaLanzamiento().toString());
                 binding.itemRecyclerFragment.tituloRecycler.setText("Personajes");
                 personajeViewModel.cargarPersonajesPorIds(episodio.getPersonajes());
@@ -67,12 +65,5 @@ public class MostrarEpisodioFragment extends Fragment {
                 Log.e("Personajes", "La lista de personajes está vacía.");
             }
         });
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-
-        BottomNavUtil.mostrarBottomNavigationView(getActivity(), R.id.bottomNav);
     }
 }
