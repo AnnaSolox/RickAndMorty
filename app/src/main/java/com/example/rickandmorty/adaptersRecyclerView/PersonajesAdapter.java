@@ -14,7 +14,7 @@ import com.example.rickandmorty.utils.FiltradoUtilidad;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LocalizacionAdapter extends RecyclerView.Adapter<PersonajeViewHolder> {
+public class PersonajesAdapter extends RecyclerView.Adapter<PersonajeViewHolder> {
     private List<Personaje> personajes = new ArrayList<>();
     private List<Personaje> personajesOriginal;
 

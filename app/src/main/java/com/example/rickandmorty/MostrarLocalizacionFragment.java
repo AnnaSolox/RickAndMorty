@@ -11,9 +11,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.rickandmorty.adaptersRecyclerView.LocalizacionAdapter;
+import com.example.rickandmorty.adaptersRecyclerView.PersonajesAdapter;
 import com.example.rickandmorty.databinding.FragmentMostrarLocalizacionBinding;
-import com.example.rickandmorty.utils.RecyclerViewEpisodios;
+import com.example.rickandmorty.utils.RecyclerViewPersonajes;
 import com.example.rickandmorty.viewmodels.LocalizacionViewModel;
 import com.example.rickandmorty.viewmodels.PersonajeViewModel;
 
@@ -21,7 +21,7 @@ import com.example.rickandmorty.viewmodels.PersonajeViewModel;
 public class MostrarLocalizacionFragment extends Fragment {
     private FragmentMostrarLocalizacionBinding binding;
     private PersonajeViewModel personajeViewModel;
-    private LocalizacionAdapter personajesAdapter;
+    private PersonajesAdapter personajesAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,8 +36,8 @@ public class MostrarLocalizacionFragment extends Fragment {
 
         LocalizacionViewModel localizacionViewModel = new ViewModelProvider(requireActivity()).get(LocalizacionViewModel.class);
         personajeViewModel = new ViewModelProvider(requireActivity()).get(PersonajeViewModel.class);
-        personajesAdapter = new LocalizacionAdapter();
-        RecyclerViewEpisodios recyclerViewPersonajes = new RecyclerViewEpisodios(binding.itemRecyclerResidentes.recyclerView, personajeViewModel, personajesAdapter);
+        personajesAdapter = new PersonajesAdapter();
+        RecyclerViewPersonajes recyclerViewPersonajes = new RecyclerViewPersonajes(binding.itemRecyclerResidentes.recyclerView, personajeViewModel, personajesAdapter);
         recyclerViewPersonajes.setupRecyclerView(getContext());
         recyclerViewPersonajes.observarPersonajes(getViewLifecycleOwner());
         recyclerViewPersonajes.configurarBusqueda(binding.itemRecyclerResidentes.searchBar);

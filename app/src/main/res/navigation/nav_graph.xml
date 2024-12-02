@@ -9,7 +9,11 @@
         android:name="com.example.rickandmorty.EpisodiosFragment"
         android:label="fragment_episodios"
         tools:layout="@layout/recyclerview_fragments"
-        />
+        >
+        <action
+            android:id="@+id/action_episodiosFragment_to_mostrarEpisodioFragment"
+            app:destination="@id/mostrarEpisodioFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/localizacionesFragment"
@@ -31,4 +35,9 @@
         android:name="com.example.rickandmorty.MostrarLocalizacionFragment"
         android:label="fragment_mostrar_localizacion"
         tools:layout="@layout/fragment_mostrar_localizacion" />
+    <fragment
+        android:id="@+id/mostrarEpisodioFragment"
+        android:name="com.example.rickandmorty.mostrarEpisodioFragment"
+        android:label="fragment_mostrar_episodio"
+        tools:layout="@layout/fragment_mostrar_episodio" />
 </navigation>

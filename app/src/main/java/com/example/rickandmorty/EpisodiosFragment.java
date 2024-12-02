@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.rickandmorty.adaptersRecyclerView.EpisodiosAdapter;
 import com.example.rickandmorty.databinding.RecyclerviewFragmentsBinding;
-import com.example.rickandmorty.utils.RecyclerEpisodios;
+import com.example.rickandmorty.utils.RecyclerViewEpisodios;
 import com.example.rickandmorty.viewmodels.EpisodioViewModel;
 
 public class EpisodiosFragment extends Fragment {
@@ -38,7 +38,7 @@ public class EpisodiosFragment extends Fragment {
         binding.recyclerView.setAdapter(episodiosAdapter);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        RecyclerEpisodios recyclerEpisodios = new RecyclerEpisodios(binding.recyclerView,episodioViewModel, episodiosAdapter);
+        RecyclerViewEpisodios recyclerEpisodios = new RecyclerViewEpisodios(binding.recyclerView,episodioViewModel, episodiosAdapter);
         recyclerEpisodios.setupRecyclerView(getContext());
         recyclerEpisodios.observarPersonajes(getViewLifecycleOwner());
         recyclerEpisodios.configurarBusqueda(binding.searchBar);

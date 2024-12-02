@@ -5,14 +5,11 @@ import android.util.Log;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.rickandmorty.adaptersRecyclerView.LocalizacionesAdapter;
-import com.example.rickandmorty.adaptersRecyclerView.LocalizacionAdapter;
 import com.example.rickandmorty.viewmodels.LocalizacionViewModel;
-import com.example.rickandmorty.viewmodels.PersonajeViewModel;
 
 public class RecyclerViewLocalizaciones {
     private RecyclerView recyclerView;

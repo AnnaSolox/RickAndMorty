@@ -2,35 +2,35 @@ package com.example.rickandmorty.utils;
 
 import android.content.Context;
 import android.util.Log;
-import androidx.appcompat.widget.SearchView;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.rickandmorty.adaptersRecyclerView.LocalizacionAdapter;
-import com.example.rickandmorty.viewmodels.PersonajeViewModel;
+import com.example.rickandmorty.adaptersRecyclerView.EpisodiosAdapter;
+import com.example.rickandmorty.viewmodels.EpisodioViewModel;
 
 public class RecyclerViewEpisodios {
     private RecyclerView recyclerView;
-    private LocalizacionAdapter personajesAdapter;
-    private PersonajeViewModel personajeViewModel;
+    private EpisodiosAdapter episodiosAdapter;
+    private EpisodioViewModel episodioViewModel;
 
-    public RecyclerViewEpisodios(RecyclerView recyclerView, PersonajeViewModel personajeViewModel, LocalizacionAdapter personajesAdapter){
+    public RecyclerViewEpisodios(RecyclerView recyclerView, EpisodioViewModel episodioViewModel, EpisodiosAdapter episodiosAdapter){
         this.recyclerView = recyclerView;
-        this.personajeViewModel = personajeViewModel;
-        this.personajesAdapter = personajesAdapter;
+        this.episodioViewModel = episodioViewModel;
+        this.episodiosAdapter = episodiosAdapter;
     }
 
     public void setupRecyclerView(Context context){
-        recyclerView.setAdapter(personajesAdapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(context, 2));
+        recyclerView.setAdapter(episodiosAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
     }
 
     public void observarPersonajes(LifecycleOwner lifecycleOwner){
-        personajeViewModel.getPersonajeLiveData().observe(lifecycleOwner, personajes -> {
-            Log.d("PersonajesRecycler", "Tamaño de la lista de personajes: " + personajes.size());
-            personajesAdapter.establecerLista(personajes);
+        episodioViewModel.getEpisodiosLiveData().observe(lifecycleOwner, episodios -> {
+            Log.d("EpisodiosRecycler", "Tamaño de la lista de episodios: " + episodios.size());
+            episodiosAdapter.establecerLista(episodios);
         });
     }
     public void configurarBusqueda(SearchView searchBar) {
@@ -42,10 +42,9 @@ public class RecyclerViewEpisodios {
 
             @Override
             public boolean onQueryTextChange(String busqueda) {
-                personajesAdapter.filtradoPorNombre(busqueda);
+                episodiosAdapter.filtradoPorNombre(busqueda);
                 return true;
             }
         });
     }
-
 }
