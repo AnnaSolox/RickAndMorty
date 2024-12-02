@@ -36,6 +36,19 @@ public class LocalizacionViewModel extends AndroidViewModel {
         rmApiService = retrofit.create(RMApiService.class);
     }
 
+    //Cargar Localización individual:
+
+    public MutableLiveData<List<Localizacion>> obtener() {return localizacionLiveData;}
+    MutableLiveData<Localizacion> localizacionSeleccionada = new MutableLiveData<>();
+
+    public void seleccionar(Localizacion localizacion){
+        Log.d("Localizacion_ViewModel", "Localizacion seleccionada " + localizacion.getNombre());
+        localizacionSeleccionada.setValue(localizacion);}
+    public MutableLiveData<Localizacion> seleccionada(){return localizacionSeleccionada;}
+
+
+
+    //Cargar datos de la API:
     public void cargarLocalizaciones(){
         isLoading.setValue(true);
         List<Localizacion> listadoLocalizaciones = new ArrayList<>();
@@ -56,7 +69,7 @@ public class LocalizacionViewModel extends AndroidViewModel {
 
     private void cargarSiguientesPaginas(URI siguienteUrl, List<Localizacion> listaLocalizaciones){
         if(siguienteUrl != null) {
-            Call<LocalizacionList> callSiguiente = rmApiService.getLocalizacionFromUrl(siguienteUrl);
+            Call<LocalizacionList> callSiguiente = rmApiService.getLocalizacionFromNextUrl(siguienteUrl);
             callSiguiente.enqueue(new Callback<LocalizacionList>() {
                 @Override
                 public void onResponse(@androidx.annotation.NonNull Call<LocalizacionList> call, @androidx.annotation.NonNull Response<LocalizacionList> response) {

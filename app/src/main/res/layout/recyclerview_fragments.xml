@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".LocalizacionesFragment">
+    tools:context=".PersonajesFragment">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gv1"
@@ -28,11 +28,11 @@
         app:layout_constraintGuide_percent=".07"/>
 
     <TextView
-        android:id="@+id/tituloEpisodios"
+        android:id="@+id/tituloRecycler"
         style="@style/titulosFragments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Localizaciones"
+        android:text="Título"
         app:layout_constraintStart_toStartOf="@+id/gv1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/gh1"/>
@@ -41,23 +41,22 @@
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchBar"
         android:layout_width="0dp"
-        android:layout_height="30dp"
-        app:layout_constraintStart_toEndOf="@id/tituloEpisodios"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/tituloRecycler"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tituloEpisodios"
-        app:layout_constraintBottom_toBottomOf="@id/tituloEpisodios"
-        android:layout_marginTop="10dp"/>
+        app:layout_constraintStart_toEndOf="@id/tituloRecycler"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintEnd_toStartOf="@+id/gv2"
         app:layout_constraintStart_toEndOf="@+id/gv1"
-        app:layout_constraintTop_toBottomOf="@id/gh1"
+        app:layout_constraintTop_toBottomOf="@id/searchBar"
         app:layout_constraintBottom_toBottomOf="parent"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

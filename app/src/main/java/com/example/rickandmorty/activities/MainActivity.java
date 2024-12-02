@@ -31,21 +31,8 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        binding.btnEpisodios.setOnClickListener(v -> {
+        binding.btnRickypedia.setOnClickListener(v -> {
             Intent intent = new Intent(this,SecondActivity.class);
-            intent.putExtra("EXTRA_FRAGMENT", "episodios");
-            startActivity(intent);
-        });
-
-        binding.btnLocalizaciones.setOnClickListener(v -> {
-            Intent intent = new Intent(this,SecondActivity.class);
-            intent.putExtra("EXTRA_FRAGMENT", "localizaciones");
-            startActivity(intent);
-        });
-
-        binding.btnPersonajes.setOnClickListener(v -> {
-            Intent intent = new Intent(this,SecondActivity.class);
-            intent.putExtra("EXTRA_FRAGMENT", "personajes");
             startActivity(intent);
         });
     }

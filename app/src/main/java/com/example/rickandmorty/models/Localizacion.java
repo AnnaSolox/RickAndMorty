@@ -19,5 +19,5 @@ public class Localizacion {
     private String tipo;
     private String dimension;
     @SerializedName("residents")
-    private List<URI> residentes;
+    private List<String> residentes;
 }

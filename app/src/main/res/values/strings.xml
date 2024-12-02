@@ -4,5 +4,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="btnPersonajes">PERSONAJES</string>
     <string name="btnLocalizaciones">LOCALIZACIONES</string>
-    <string name="btnEpisodios">EPISODIOS</string>
+    <string name="btnEpisodios">RICKYPEDIA</string>
+    <string name="localizacionesTitleFragment">Localizaciones</string>
+    <string name="personajesTitleFragment">Personajes</string>
 </resources>

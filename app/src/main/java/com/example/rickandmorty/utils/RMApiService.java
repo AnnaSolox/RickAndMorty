@@ -35,10 +35,10 @@ public interface RMApiService {
     Call<EpisodioList> getEpisodioListFromUrl(@Url URI url);
 
     @GET
-    Call<LocalizacionList> getLocalizacionFromUrl(@Url URI url);
+    Call<LocalizacionList> getLocalizacionFromNextUrl(@Url URI url);
 
     @GET
-    Call<PersonajeList> getPersonajeFromUrl(@Url URI url);
+    Call<PersonajeList> getPersonajesFromNextUrl(@Url URI url);
 
 
     //Busqueda de elementos por ID

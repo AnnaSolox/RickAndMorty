@@ -87,13 +87,13 @@
         android:layout_width="0dp"
         android:layout_height="65dp"
         android:text="@string/btnLocalizaciones"
-        app:layout_constraintBottom_toTopOf="@id/btnEpisodios"
+        app:layout_constraintBottom_toTopOf="@id/btnRickypedia"
         app:layout_constraintEnd_toStartOf="@+id/gv2"
         app:layout_constraintStart_toEndOf="@id/gv1"
         app:layout_constraintTop_toBottomOf="@id/btnPersonajes" />
 
     <Button
-        android:id="@+id/btnEpisodios"
+        android:id="@+id/btnRickypedia"
         android:layout_width="0dp"
         android:layout_height="65dp"
         android:text="@string/btnEpisodios"

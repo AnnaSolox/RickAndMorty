@@ -1,46 +1,47 @@
 package com.example.rickandmorty;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.rickandmorty.adaptersRecyclerView.LocalizacionesAdapter;
-import com.example.rickandmorty.databinding.FragmentLocalizacionesBinding;
+import com.example.rickandmorty.databinding.RecyclerviewFragmentsBinding;
+import com.example.rickandmorty.utils.RecyclerViewLocalizaciones;
 import com.example.rickandmorty.viewmodels.LocalizacionViewModel;
 
 public class LocalizacionesFragment extends Fragment {
-    private FragmentLocalizacionesBinding binding;
+    private RecyclerviewFragmentsBinding binding;
+    private LocalizacionesAdapter localizacionesAdapter;
+    private LocalizacionViewModel localizacionViewModel;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return (binding = FragmentLocalizacionesBinding.inflate(inflater, container, false)).getRoot();
+        return (binding = RecyclerviewFragmentsBinding.inflate(inflater, container, false)).getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        LocalizacionesAdapter localizacionesAdapter = new LocalizacionesAdapter();
+        localizacionViewModel = new ViewModelProvider(requireActivity()).get(LocalizacionViewModel.class);
+        localizacionesAdapter = new LocalizacionesAdapter(localizacionViewModel, NavHostFragment.findNavController(this));
 
-        binding.recyclerView.setAdapter(localizacionesAdapter);
-        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        LocalizacionViewModel localizacionViewModel = new ViewModelProvider(this).get(LocalizacionViewModel.class);
+        RecyclerViewLocalizaciones recyclerViewLocalizaciones = new RecyclerViewLocalizaciones(binding.recyclerView,localizacionViewModel, localizacionesAdapter);
+        recyclerViewLocalizaciones.setupRecyclerView(getContext());
+        recyclerViewLocalizaciones.observarPersonajes(getViewLifecycleOwner());
+        recyclerViewLocalizaciones.configurarBusqueda(binding.searchBar);
+        binding.tituloRecycler.setText(R.string.localizacionesTitleFragment);
         localizacionViewModel.cargarLocalizaciones();
-        localizacionViewModel.getLocalizacionLiveData().observe(getViewLifecycleOwner(), localizacions -> {
-            Log.d("Localizaciones", "Tamaño de la lista de localizaciones: " + localizacions.size());
-            localizacionesAdapter.establecerLista(localizacions);
-        });
+        localizacionViewModel.obtener().observe(getViewLifecycleOwner(), localizacionesAdapter::establecerLista);
     }
 }

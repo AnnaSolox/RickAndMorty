@@ -6,12 +6,30 @@
         <item name="colorPrimaryDark">@color/darkAcidGreen</item>
         <item name="colorSecondary">@color/acidBlue</item>
         <item name="fontFamily">@font/manrope_semibold</item>
-
+        <item name="colorOnPrimary">@color/acidBlue</item>
+        <item name="colorOnSurface">@color/acidBlue</item>
+        <item name="colorOnPrimarySurface">@color/acidBlue</item>
         <item name="materialButtonStyle">@style/botones</item>
+        <item name="bottomNavigationStyle">@style/CustomBottomNavigationView</item>
 
     </style>
 
     <style name="Theme.RickAndMorty" parent="Base.Theme.RickAndMorty" />
+
+    <style name="CustomBottomNavigationView" parent="Widget.Material3.BottomNavigationView">
+        <item name="labelVisibilityMode">unlabeled</item>
+        <item name="itemIconSize">32dp</item>
+        <item name="itemIconTint">@color/white</item>
+        <item name="backgroundTint">@color/darkAcidGreen</item>
+        <item name="navigationIconTint">@color/acidBlue</item>
+        <item name="android:layout_marginBottom">0dp</item>
+    </style>
+
+    <style name="ActiveTextStyle" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textSize">12sp</item>
+        <item name="android:paddingTop">4dp</item> <!-- Ajusta este valor para más espacio -->
+        <item name="android:textColor">@color/white</item>
+    </style>
 
     <style name="titulosFragments">
         <item name="fontFamily">@font/oswald</item>

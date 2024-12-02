@@ -32,7 +32,7 @@ public class SecondActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+        /*EdgeToEdge.enable(this);*/
         binding = ActivitySecondBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -49,17 +49,6 @@ public class SecondActivity extends AppCompatActivity {
                 getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment)))
                 .getNavController();
 
-        String fragmentoACargar = getIntent().getStringExtra("EXTRA_FRAGMENT");
-        if ("episodios".equals(fragmentoACargar)) {
-            navController.navigate(R.id.episodiosFragment);
-            navController.popBackStack(R.id.episodiosFragment, true);
-        } else if ("personajes".equals(fragmentoACargar)) {
-            navController.popBackStack(R.id.episodiosFragment, true);
-            navController.navigate(R.id.personajesFragment);
-        } else if ("localizaciones".equals(fragmentoACargar)) {
-            navController.popBackStack(R.id.episodiosFragment, true);
-            navController.navigate(R.id.localizacionesFragment);
-        }
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.episodiosFragment, R.id.personajesFragment, R.id.localizacionesFragment

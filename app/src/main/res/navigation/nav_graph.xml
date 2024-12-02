@@ -2,24 +2,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/episodiosFragment">
+    app:startDestination="@id/personajesFragment">
 
     <fragment
         android:id="@+id/episodiosFragment"
         android:name="com.example.rickandmorty.EpisodiosFragment"
         android:label="fragment_episodios"
-        tools:layout="@layout/fragment_episodios"
+        tools:layout="@layout/recyclerview_fragments"
         />
 
     <fragment
         android:id="@+id/localizacionesFragment"
         android:name="com.example.rickandmorty.LocalizacionesFragment"
         android:label="fragment_localizaciones"
-        tools:layout="@layout/fragment_localizaciones"/>
+        tools:layout="@layout/recyclerview_fragments">
+        <action
+            android:id="@+id/action_localizacionesFragment_to_mostrarLocalizacionFragment"
+            app:destination="@id/mostrarLocalizacionFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/personajesFragment"
         android:name="com.example.rickandmorty.PersonajesFragment"
         android:label="fragment_personajes"
-        tools:layout="@layout/fragment_personajes"/>
+        tools:layout="@layout/recyclerview_fragments"/>
+    <fragment
+        android:id="@+id/mostrarLocalizacionFragment"
+        android:name="com.example.rickandmorty.MostrarLocalizacionFragment"
+        android:label="fragment_mostrar_localizacion"
+        tools:layout="@layout/fragment_mostrar_localizacion" />
 </navigation>
