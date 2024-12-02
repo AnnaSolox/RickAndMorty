@@ -29,15 +29,32 @@
         android:id="@+id/personajesFragment"
         android:name="com.example.rickandmorty.PersonajesFragment"
         android:label="fragment_personajes"
-        tools:layout="@layout/recyclerview_fragments"/>
+        tools:layout="@layout/recyclerview_fragments">
+        <action
+            android:id="@+id/action_personajesFragment_to_mostrarPersonajeFragment"
+            app:destination="@id/mostrarPersonajeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mostrarLocalizacionFragment"
         android:name="com.example.rickandmorty.MostrarLocalizacionFragment"
         android:label="fragment_mostrar_localizacion"
-        tools:layout="@layout/fragment_mostrar_localizacion" />
+        tools:layout="@layout/fragment_localizacion_episodio" >
+        <action
+            android:id="@+id/action_mostrarLocalizacionFragment_to_mostrarPersonajeFragment"
+            app:destination="@id/mostrarPersonajeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mostrarEpisodioFragment"
-        android:name="com.example.rickandmorty.mostrarEpisodioFragment"
+        android:name="com.example.rickandmorty.MostrarEpisodioFragment"
         android:label="fragment_mostrar_episodio"
-        tools:layout="@layout/fragment_mostrar_episodio" />
+        tools:layout="@layout/fragment_localizacion_episodio" >
+        <action
+            android:id="@+id/action_mostrarEpisodioFragment_to_mostrarPersonajeFragment"
+            app:destination="@id/mostrarPersonajeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mostrarPersonajeFragment"
+        android:name="com.example.rickandmorty.MostrarPersonajeFragment"
+        android:label="fragment_mostrar_personaje"
+        tools:layout="@layout/fragment_mostrar_personaje" />
 </navigation>

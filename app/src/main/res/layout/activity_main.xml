@@ -49,7 +49,7 @@
         app:layout_constraintGuide_percent=".55" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/gh3"
+        android:id="@+id/gh8"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
@@ -80,7 +80,7 @@
         app:layout_constraintBottom_toTopOf="@id/btnLocalizaciones"
         app:layout_constraintEnd_toStartOf="@+id/gv2"
         app:layout_constraintStart_toEndOf="@id/gv1"
-        app:layout_constraintTop_toBottomOf="@id/gh3"/>
+        app:layout_constraintTop_toBottomOf="@id/gh8"/>
 
     <Button
         android:id="@+id/btnLocalizaciones"

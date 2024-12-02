@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.rickandmorty.models.Episodio;
 import com.example.rickandmorty.models.EpisodioList;
+import com.example.rickandmorty.models.Personaje;
 import com.example.rickandmorty.utils.RMApiService;
 import com.example.rickandmorty.utils.RetrofitBuilder;
 
@@ -45,6 +46,16 @@ public class EpisodioViewModel extends AndroidViewModel{
         Retrofit retrofit = RetrofitBuilder.getRetrofitBuilder();
         rmApiService = retrofit.create(RMApiService.class);
     }
+
+    //Cargar Episodio individual:
+
+    public MutableLiveData<List<Episodio>> obtener() {return episodiosLiveData;}
+    MutableLiveData<Episodio> episodioSeleccionado = new MutableLiveData<>();
+
+    public void seleccionar(Episodio episodio){
+        Log.d("Episodio_ViewModel", "Episodio seleccionado " + episodio.getNombre());
+        episodioSeleccionado.setValue(episodio);}
+    public MutableLiveData<Episodio> seleccionado(){return episodioSeleccionado;}
 
     /**
      * Inicia la carga de episodios desde la API de Rick and Morty.
@@ -123,5 +134,48 @@ public class EpisodioViewModel extends AndroidViewModel{
      */
     private void manejarError(Throwable throwable){
         Log.e("API ERROR", "EPISODIOS: " + throwable.getMessage());
+    }
+
+    public void cargarEpisodiosPorId(List<String> urls) {
+        isLoading.setValue(true);
+        List<Episodio> listaEpisodios = new ArrayList<>();
+
+        Log.d("PersonajesViewModel", "Cargando personajes por ID: " + urls.toString());
+
+        if (urls == null || urls.isEmpty()) {
+            Log.e("PersonajeViewModel", "La lista de residentes está vacía o nula.");
+            isLoading.setValue(false);
+            return;
+        }
+
+        for(String url: urls) {
+            String id = url.substring(url.lastIndexOf("/")+1);
+            Log.d("EpisodioViewModel", "Cargando episodio con ID: " + id);
+            Call<Episodio> call = rmApiService.getEpisodioById(id);
+            call.enqueue(new Callback<Episodio>() {
+                @Override
+                public void onResponse(Call<Episodio> call, Response<Episodio> response) {
+                    if (response.body() != null) {
+                        listaEpisodios.add(response.body());
+                        Log.d("PersonajeViewModel", "Personaje cargado: " + response.body().getNombre());
+                        episodiosLiveData.setValue(listaEpisodios);
+                    } else {
+                        Log.e("PersonajeViewModel", "Respuesta vacía para el personaje ID: " + id);
+                    }
+
+                    if (listaEpisodios.size() == urls.size()){
+                        Log.d("PersonajeViewModel", "Todos los personajes han sido cargados.");
+                        isLoading.setValue(false);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Episodio> call, Throwable throwable) {
+                    Log.e("EpisodioViewModel", "Error al cargar episodio ID: " + id + " Error: " + throwable.getMessage());
+                    manejarError(throwable);
+                }
+            });
+        }
+
     }
 }

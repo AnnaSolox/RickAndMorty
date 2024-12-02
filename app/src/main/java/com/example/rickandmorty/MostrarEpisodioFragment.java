@@ -10,17 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.rickandmorty.adaptersRecyclerView.PersonajesAdapter;
+import com.example.rickandmorty.databinding.BottomNavViewBinding;
 import com.example.rickandmorty.databinding.FragmentLocalizacionEpisodioBinding;
 import com.example.rickandmorty.utils.BottomNavUtil;
 import com.example.rickandmorty.utils.RecyclerViewPersonajes;
-import com.example.rickandmorty.viewmodels.LocalizacionViewModel;
+import com.example.rickandmorty.viewmodels.EpisodioViewModel;
 import com.example.rickandmorty.viewmodels.PersonajeViewModel;
 
-
-public class MostrarLocalizacionFragment extends Fragment {
+public class MostrarEpisodioFragment extends Fragment {
     private FragmentLocalizacionEpisodioBinding binding;
     private PersonajeViewModel personajeViewModel;
     private PersonajesAdapter personajesAdapter;
@@ -38,7 +39,7 @@ public class MostrarLocalizacionFragment extends Fragment {
 
         BottomNavUtil.ocultarBottomNavigationView(getActivity(), R.id.bottomNav);
 
-        LocalizacionViewModel localizacionViewModel = new ViewModelProvider(requireActivity()).get(LocalizacionViewModel.class);
+        EpisodioViewModel episodioViewModel = new ViewModelProvider(requireActivity()).get(EpisodioViewModel.class);
         personajeViewModel = new ViewModelProvider(requireActivity()).get(PersonajeViewModel.class);
         personajesAdapter = new PersonajesAdapter(personajeViewModel, NavHostFragment.findNavController(this));
         RecyclerViewPersonajes recyclerViewPersonajes = new RecyclerViewPersonajes(binding.itemRecyclerFragment.itemRecycler, personajeViewModel, personajesAdapter);
@@ -46,15 +47,15 @@ public class MostrarLocalizacionFragment extends Fragment {
         recyclerViewPersonajes.observarPersonajes(getViewLifecycleOwner());
         recyclerViewPersonajes.configurarBusqueda(binding.itemRecyclerFragment.searchBar);
 
-        localizacionViewModel.seleccionada().observe(getViewLifecycleOwner(), localizacion -> {
-            if(localizacion != null){
-                binding.titulo.setText(localizacion.getNombre());
-                binding.info1.setText(localizacion.getDimension());
-                binding.info2.setText(localizacion.getTipo());
-                binding.itemRecyclerFragment.tituloRecycler.setText("Residentes");
-                personajeViewModel.cargarPersonajesPorIds(localizacion.getResidentes());
+        episodioViewModel.seleccionado().observe(getViewLifecycleOwner(), episodio -> {
+            if(episodio != null){
+                binding.titulo.setText(episodio.getNombre());
+                binding.info1.setText(episodio.getIdentificador());
+                binding.info2.setText(episodio.getFechaLanzamiento().toString());
+                binding.itemRecyclerFragment.tituloRecycler.setText("Personajes");
+                personajeViewModel.cargarPersonajesPorIds(episodio.getPersonajes());
             } else {
-                Log.e("Fragment", "La localización seleccionada es nula");
+                Log.e("Fragment", "El episodio seleccionado es nulo");
             }
         });
 
@@ -66,12 +67,12 @@ public class MostrarLocalizacionFragment extends Fragment {
                 Log.e("Personajes", "La lista de personajes está vacía.");
             }
         });
-
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+
         BottomNavUtil.mostrarBottomNavigationView(getActivity(), R.id.bottomNav);
     }
 }

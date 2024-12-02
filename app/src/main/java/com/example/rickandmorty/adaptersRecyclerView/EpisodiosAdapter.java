@@ -4,11 +4,15 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.rickandmorty.R;
 import com.example.rickandmorty.databinding.ItemEpisodioBinding;
 import com.example.rickandmorty.models.Episodio;
 import com.example.rickandmorty.utils.FiltradoUtilidad;
+import com.example.rickandmorty.viewmodels.EpisodioViewModel;
+import com.example.rickandmorty.viewmodels.LocalizacionViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +20,13 @@ import java.util.List;
 public class EpisodiosAdapter extends RecyclerView.Adapter<EpisodioViewHolder> {
     private List<Episodio> episodios = new ArrayList<>();
     private List<Episodio> episodiosOriginal;
+    private final NavController navController;
+    private final EpisodioViewModel episodioViewModel;
+
+    public EpisodiosAdapter(EpisodioViewModel episodioViewModel, NavController navController){
+        this.episodioViewModel = episodioViewModel;
+        this.navController = navController;
+    }
 
     @NonNull
     @Override
@@ -29,6 +40,11 @@ public class EpisodiosAdapter extends RecyclerView.Adapter<EpisodioViewHolder> {
 
         holder.binding.nombreEpisodio.setText(episodio.getNombre());
         holder.binding.identificadorEpisodio.setText(episodio.getIdentificador());
+
+        holder.itemView.setOnClickListener(view -> {
+            episodioViewModel.seleccionar(episodio);
+            navController.navigate(R.id.action_episodiosFragment_to_mostrarEpisodioFragment);
+        });
 
     }
 

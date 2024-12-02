@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MostrarLocalizacionFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gv1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gv3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gv2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gh1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.12" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gh2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".4" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gh3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".45" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gh4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".7" />
+
+    <TextView
+        android:id="@+id/titulo"
+        style="@style/titulosFragmentsIndividuales"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/gh1"
+        app:layout_constraintEnd_toEndOf="@id/gv3"
+        app:layout_constraintStart_toStartOf="@id/gv1"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="PERSONAJE" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="5dp"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintBottom_toTopOf="@id/gh3"
+        app:layout_constraintEnd_toStartOf="@id/gv3"
+        app:layout_constraintStart_toEndOf="@id/gv1"
+        app:layout_constraintTop_toBottomOf="@id/gh1">
+
+        <ImageView
+            android:id="@+id/imagePjItem"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/rick_morty_prueba_item" />
+
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/rounded_background"
+        app:layout_constraintBottom_toTopOf="@id/gh4"
+        app:layout_constraintEnd_toStartOf="@id/gv3"
+        app:layout_constraintStart_toEndOf="@id/gv1"
+        app:layout_constraintTop_toBottomOf="@id/gh1" />
+
+    <TextView
+        android:id="@+id/tipo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="TIPO: "
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/valorTipo"
+        app:layout_constraintStart_toEndOf="@id/gv2"
+        app:layout_constraintTop_toBottomOf="@id/gh3"
+        app:layout_constraintVertical_chainStyle="spread"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/valorTipo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="valor tipo"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/genero"
+        app:layout_constraintEnd_toEndOf="@id/gv3"
+        app:layout_constraintStart_toStartOf="@id/tipo"
+        app:layout_constraintTop_toBottomOf="@id/tipo" />
+
+    <TextView
+        android:id="@+id/genero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="GÉNERO: "
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/origen"
+        app:layout_constraintStart_toEndOf="@id/gv2"
+        app:layout_constraintTop_toBottomOf="@id/tipo"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/valorGenero"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="valor género"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/localizacion"
+        app:layout_constraintEnd_toEndOf="@id/gv3"
+        app:layout_constraintStart_toStartOf="@id/genero"
+        app:layout_constraintTop_toBottomOf="@id/genero" />
+
+    <TextView
+        android:id="@+id/localizacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LOCALIZACIÓN: "
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/valorGenero"
+        app:layout_constraintTop_toBottomOf="@id/valorGenero"
+        app:layout_constraintBottom_toTopOf="@id/valorLocalizacion"/>
+
+    <TextView
+        android:id="@+id/valorLocalizacion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="valor localización"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/gh4"
+        app:layout_constraintEnd_toEndOf="@id/gv3"
+        app:layout_constraintStart_toStartOf="@id/localizacion"
+        app:layout_constraintTop_toBottomOf="@id/localizacion"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/estado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ESTADO: "
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/valorEstado"
+        app:layout_constraintTop_toBottomOf="@id/gh3"
+        app:layout_constraintStart_toStartOf="@id/gv1"
+        android:layout_marginStart="20dp"/>
+
+    <TextView
+        android:id="@+id/valorEstado"
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        android:text="valor estado"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/especie"
+        app:layout_constraintTop_toBottomOf="@id/estado"
+        app:layout_constraintStart_toStartOf="@id/estado"/>
+
+    <TextView
+        android:id="@+id/especie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ESPECIE: "
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/valorEspecie"
+        app:layout_constraintTop_toBottomOf="@id/valorEstado"
+        app:layout_constraintStart_toStartOf="@id/valorEstado"/>
+
+    <TextView
+        android:id="@+id/valorEspecie"
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        android:text="valor especie"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/origen"
+        app:layout_constraintTop_toBottomOf="@id/especie"
+        app:layout_constraintStart_toStartOf="@id/especie"/>
+
+    <TextView
+        android:id="@+id/origen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ORIGEN: "
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/valorOrigen"
+        app:layout_constraintTop_toBottomOf="@id/valorEspecie"
+        app:layout_constraintStart_toStartOf="@id/valorEspecie"/>
+
+    <TextView
+        android:id="@+id/valorOrigen"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="valor origen"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/gh4"
+        app:layout_constraintTop_toBottomOf="@id/origen"
+        app:layout_constraintEnd_toEndOf="@id/gv2"
+        app:layout_constraintStart_toStartOf="@id/origen"
+        android:layout_marginBottom="10dp"/>
+
+    <include
+        android:id="@+id/itemRecyclerFragment"
+        layout="@layout/recyclerview_fragments"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/gv3"
+        app:layout_constraintStart_toEndOf="@id/gv1"
+        app:layout_constraintTop_toBottomOf="@id/gh4" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

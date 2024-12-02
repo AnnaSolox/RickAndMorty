@@ -36,7 +36,7 @@ public class LocalizacionesFragment extends Fragment {
         localizacionViewModel = new ViewModelProvider(requireActivity()).get(LocalizacionViewModel.class);
         localizacionesAdapter = new LocalizacionesAdapter(localizacionViewModel, NavHostFragment.findNavController(this));
 
-        RecyclerViewLocalizaciones recyclerViewLocalizaciones = new RecyclerViewLocalizaciones(binding.recyclerView,localizacionViewModel, localizacionesAdapter);
+        RecyclerViewLocalizaciones recyclerViewLocalizaciones = new RecyclerViewLocalizaciones(binding.itemRecycler,localizacionViewModel, localizacionesAdapter);
         recyclerViewLocalizaciones.setupRecyclerView(getContext());
         recyclerViewLocalizaciones.observarPersonajes(getViewLifecycleOwner());
         recyclerViewLocalizaciones.configurarBusqueda(binding.searchBar);

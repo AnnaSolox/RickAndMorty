@@ -27,7 +27,7 @@ public class RecyclerViewEpisodios {
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
     }
 
-    public void observarPersonajes(LifecycleOwner lifecycleOwner){
+    public void observarEpisodios(LifecycleOwner lifecycleOwner){
         episodioViewModel.getEpisodiosLiveData().observe(lifecycleOwner, episodios -> {
             Log.d("EpisodiosRecycler", "Tamaño de la lista de episodios: " + episodios.size());
             episodiosAdapter.establecerLista(episodios);

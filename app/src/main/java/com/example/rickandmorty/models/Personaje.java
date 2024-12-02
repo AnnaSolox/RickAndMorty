@@ -30,5 +30,5 @@ public class Personaje {
     @SerializedName("image")
     private String imagen;
     @SerializedName("episode")
-    private List<URI> episodios;
+    private List<String> episodios;
 }

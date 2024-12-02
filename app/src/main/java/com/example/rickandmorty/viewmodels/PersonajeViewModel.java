@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.rickandmorty.models.Episodio;
 import com.example.rickandmorty.models.Personaje;
 import com.example.rickandmorty.models.PersonajeList;
 import com.example.rickandmorty.utils.RMApiService;
@@ -34,6 +35,16 @@ public class PersonajeViewModel extends AndroidViewModel {
         Retrofit retrofit = RetrofitBuilder.getRetrofitBuilder();
         rmApiService = retrofit.create(RMApiService.class);
     }
+
+    //Cargar Personaje individual:
+
+    public MutableLiveData<List<Personaje>> obtener() {return personajeLiveData;}
+    MutableLiveData<Personaje> personajeSeleccionado = new MutableLiveData<>();
+
+    public void seleccionar(Personaje personaje){
+        Log.d("Personaje_ViewModel", "Personaje seleccionado " + personaje.getNombre());
+        personajeSeleccionado.setValue(personaje);}
+    public MutableLiveData<Personaje> seleccionado(){return personajeSeleccionado;}
 
     public void cargarPerrsonajes(){
         isLoading.setValue(true);

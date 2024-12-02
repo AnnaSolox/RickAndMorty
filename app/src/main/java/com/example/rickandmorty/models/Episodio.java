@@ -21,5 +21,5 @@ public class Episodio {
     @SerializedName("episode")
     private String identificador;
     @SerializedName("characters")
-    private List<URI> personajes;
+    private List<String> personajes;
 }
