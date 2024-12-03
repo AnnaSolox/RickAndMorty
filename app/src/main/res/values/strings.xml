@@ -13,5 +13,14 @@
     <string name="descr_info2_localizacion">Dimensión:</string>
     <string name="descr_info1_episodio">Temporada/Epìsodio</string>
     <string name="descr_info2_episodio">Fecha lanzamiento</string>
+    <!--SECCIONES CARDVIEW MOSTRAR PERSONAJES-->
+    <string name="seccion1_mostrar_personaje">ESTADO:</string>
+    <string name="seccion2_mostrar_personaje">ESPECIE:</string>
+    <string name="seccion3_mostrar_personaje">ORIGEN:</string>
+    <string name="seccion4_mostrar_personaje">TIPO:</string>
+    <string name="seccion5_mostrar_personaje">GÉNERO:</string>
+    <string name="seccion6_mostrar_personaje">LOCALIZACIÓN:</string>
+    <string name="content_descr_btn_favorito">botón favorito</string>
+    <string name="content_descr_imagen_personaje">Imagen del personaje</string>
 
 </resources>

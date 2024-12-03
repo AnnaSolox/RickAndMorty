@@ -76,6 +76,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="@id/gv3"
         app:layout_constraintBottom_toTopOf="@id/gh1"
+        android:contentDescription="@string/content_descr_btn_favorito"
         />
 
     <androidx.cardview.widget.CardView
@@ -94,7 +95,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            tools:src="@drawable/rick_morty_prueba_item" />
+            tools:src="@drawable/rick_morty_prueba_item"
+            android:contentDescription="@string/content_descr_imagen_personaje"/>
 
     </androidx.cardview.widget.CardView>
 
@@ -113,7 +115,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:text="TIPO: "
+        android:text="@string/seccion4_mostrar_personaje"
         android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@id/valorTipo"
@@ -139,7 +141,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:text="GÉNERO: "
+        android:text="@string/seccion5_mostrar_personaje"
         android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@id/origen"
@@ -163,7 +165,7 @@
         android:id="@+id/localizacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LOCALIZACIÓN: "
+        android:text="@string/seccion6_mostrar_personaje"
         android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@id/valorGenero"
@@ -188,7 +190,7 @@
         android:id="@+id/estado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ESTADO: "
+        android:text="@string/seccion1_mostrar_personaje"
         android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@id/valorEstado"
@@ -211,7 +213,7 @@
         android:id="@+id/especie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ESPECIE: "
+        android:text="@string/seccion2_mostrar_personaje"
         android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@id/valorEspecie"
@@ -233,7 +235,7 @@
         android:id="@+id/origen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ORIGEN: "
+        android:text="@string/seccion3_mostrar_personaje"
         android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@id/valorOrigen"
