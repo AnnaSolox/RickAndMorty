@@ -60,16 +60,6 @@ dependencies {
     // Glide
     implementation(libs.glide)
 
-    //Mockito y core testing
-    testImplementation (libs.mockito.core)
-    testImplementation (libs.core.testing)
-    testImplementation (libs.mockito.inline)
-    testImplementation(libs.mockito.junit.jupiter)
-
-    //Jupiter
-    testImplementation (libs.junit.jupiter.api)
-    testImplementation (libs.junit.jupiter.engine)
-
 
 
 }

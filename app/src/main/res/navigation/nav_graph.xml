@@ -12,7 +12,8 @@
         >
         <action
             android:id="@+id/action_episodiosFragment_to_mostrarEpisodioFragment"
-            app:destination="@id/mostrarEpisodioFragment" />
+            app:destination="@id/mostrarEpisodioFragment"
+            app:popUpTo="@id/personajesFragment"/>
     </fragment>
 
     <fragment
@@ -22,7 +23,8 @@
         tools:layout="@layout/recyclerview_fragments">
         <action
             android:id="@+id/action_localizacionesFragment_to_mostrarLocalizacionFragment"
-            app:destination="@id/mostrarLocalizacionFragment" />
+            app:destination="@id/mostrarLocalizacionFragment"
+            app:popUpTo="@id/personajesFragment"/>
     </fragment>
 
     <fragment
@@ -32,7 +34,7 @@
         tools:layout="@layout/recyclerview_fragments">
         <action
             android:id="@+id/action_personajesFragment_to_mostrarPersonajeFragment"
-            app:destination="@id/mostrarPersonajeFragment" />
+            app:destination="@id/mostrarPersonajeFragment"/>
     </fragment>
     <fragment
         android:id="@+id/mostrarLocalizacionFragment"
@@ -41,7 +43,8 @@
         tools:layout="@layout/fragment_localizacion_episodio" >
         <action
             android:id="@+id/action_mostrarLocalizacionFragment_to_mostrarPersonajeFragment"
-            app:destination="@id/mostrarPersonajeFragment" />
+            app:destination="@id/mostrarPersonajeFragment"
+            app:popUpTo="@id/personajesFragment"/>
     </fragment>
     <fragment
         android:id="@+id/mostrarEpisodioFragment"
@@ -50,7 +53,8 @@
         tools:layout="@layout/fragment_localizacion_episodio" >
         <action
             android:id="@+id/action_mostrarEpisodioFragment_to_mostrarPersonajeFragment"
-            app:destination="@id/mostrarPersonajeFragment" />
+            app:destination="@id/mostrarPersonajeFragment"
+            app:popUpTo="@id/personajesFragment"/>
     </fragment>
     <fragment
         android:id="@+id/mostrarPersonajeFragment"
@@ -59,7 +63,8 @@
         tools:layout="@layout/fragment_mostrar_personaje" >
         <action
             android:id="@+id/action_mostrarPersonajeFragment_to_mostrarEpisodioFragment"
-            app:destination="@id/mostrarEpisodioFragment" />
+            app:destination="@id/mostrarEpisodioFragment"
+            app:popUpTo="@id/personajesFragment"/>
     </fragment>
     <fragment
         android:id="@+id/favoritosFragment"
@@ -68,6 +73,7 @@
         tools:layout="@layout/recyclerview_fragments" >
         <action
             android:id="@+id/action_favoritosFragment_to_mostrarPersonajeFragment"
-            app:destination="@id/mostrarPersonajeFragment" />
+            app:destination="@id/mostrarPersonajeFragment"
+            app:popUpTo="@id/personajesFragment"/>
     </fragment>
 </navigation>
