@@ -1,6 +1,7 @@
 package com.example.rickandmorty.viewmodels;
 
 import android.app.Application;
+import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -10,12 +11,25 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.rickandmorty.models.Episodio;
 import com.example.rickandmorty.models.Personaje;
 import com.example.rickandmorty.models.PersonajeList;
+import com.example.rickandmorty.utils.FavoritosJsonUtilidad;
 import com.example.rickandmorty.utils.RMApiService;
 import com.example.rickandmorty.utils.RetrofitBuilder;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.net.URI;
+import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import lombok.Getter;
 import retrofit2.Call;
@@ -29,11 +43,17 @@ public class PersonajeViewModel extends AndroidViewModel {
     private final MutableLiveData<List<Personaje>> personajeLiveData = new MutableLiveData<>();
     @Getter
     private final MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
+     @Getter
+    private final Set<Personaje> favoritos = new HashSet<>();
+     @Getter
+    MutableLiveData<List<Personaje>> favoritosLiveData = new MutableLiveData<>();
 
     public PersonajeViewModel(@NonNull Application application) {
         super(application);
         Retrofit retrofit = RetrofitBuilder.getRetrofitBuilder();
         rmApiService = retrofit.create(RMApiService.class);
+        favoritos.addAll(FavoritosJsonUtilidad.cargarFavoritos(application.getApplicationContext()));
+        favoritosLiveData.setValue(new ArrayList<>(favoritos));
     }
 
     //Cargar Personaje individual:
@@ -141,6 +161,24 @@ public class PersonajeViewModel extends AndroidViewModel {
                 }
             });
         }
-
     }
+
+    //Añadir personajes a favoritos
+    public void toggleFavorito(Personaje personaje) {
+        if (favoritos.contains(personaje)) {
+            favoritos.remove(personaje);
+        } else {
+            favoritos.add(personaje);
+        }
+
+        favoritosLiveData.setValue(new ArrayList<>(favoritos));
+
+        FavoritosJsonUtilidad.guardarFavoritos(getApplication().getApplicationContext(), favoritos);
+    }
+
+    public boolean esFavorito(Personaje personaje) {
+        return favoritos.contains(personaje);
+    }
+
+
 }

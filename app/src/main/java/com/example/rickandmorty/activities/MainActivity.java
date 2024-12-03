@@ -16,6 +16,7 @@ import com.example.rickandmorty.LocalizacionesFragment;
 import com.example.rickandmorty.PersonajesFragment;
 import com.example.rickandmorty.R;
 import com.example.rickandmorty.databinding.ActivityMainBinding;
+import com.example.rickandmorty.utils.FavoritosJsonUtilidad;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
@@ -32,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         binding.btnRickypedia.setOnClickListener(v -> {
+            Intent intent = new Intent(this,SecondActivity.class);
+            startActivity(intent);
+        });
+
+        binding.btnFavoritos.setOnClickListener(v -> {
             Intent intent = new Intent(this,SecondActivity.class);
             startActivity(intent);
         });

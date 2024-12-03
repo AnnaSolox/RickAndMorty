@@ -4,7 +4,7 @@
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/lightAcidGreen</item>
         <item name="colorPrimaryDark">@color/darkAcidGreen</item>
-        <item name="colorSecondary">@color/acidBlue</item>
+        <item name="colorSecondary">@color/black</item>
         <item name="fontFamily">@font/manrope_semibold</item>
         <item name="colorOnPrimary">@color/acidBlue</item>
         <item name="colorOnSurface">@color/acidBlue</item>

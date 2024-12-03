@@ -57,7 +57,7 @@ public class SecondActivity extends AppCompatActivity {
 
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.episodiosFragment, R.id.personajesFragment, R.id.localizacionesFragment
+                R.id.episodiosFragment, R.id.personajesFragment, R.id.localizacionesFragment, R.id.favoritosFragment
         ).build();
 
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
@@ -81,18 +81,12 @@ public class SecondActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_toolbar, menu);
-
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.personajesFragment) {
-            navController.navigate(R.id.personajesFragment);
-            return true;
-        } else {
-            return NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item);
-        }
+        return NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item);
     }
 
 }

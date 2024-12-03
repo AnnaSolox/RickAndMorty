@@ -60,11 +60,23 @@
         style="@style/titulosFragmentsIndividuales"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:gravity="start|center"
         app:layout_constraintBottom_toTopOf="@id/gh1"
-        app:layout_constraintEnd_toEndOf="@id/gv3"
+        app:layout_constraintEnd_toStartOf="@id/favorito"
         app:layout_constraintStart_toStartOf="@id/gv1"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="PERSONAJE" />
+
+    <ImageView
+        android:id="@+id/favorito"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_rm_fav_unchecked"
+        android:adjustViewBounds="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/gv3"
+        app:layout_constraintBottom_toTopOf="@id/gh1"
+        />
 
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"

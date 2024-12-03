@@ -33,6 +33,13 @@ public class RecyclerViewPersonajes {
             personajesAdapter.establecerLista(personajes);
         });
     }
+
+    public void observarFavoritos(LifecycleOwner lifecycleOwner) {
+        personajeViewModel.getFavoritosLiveData().observe(lifecycleOwner, favoritos -> {
+            personajesAdapter.establecerLista(favoritos);
+        });
+    }
+
     public void configurarBusqueda(SearchView searchBar) {
         searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

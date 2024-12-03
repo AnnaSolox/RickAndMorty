@@ -43,6 +43,7 @@ public class RecyclerViewEpisodios {
             @Override
             public boolean onQueryTextChange(String busqueda) {
                 episodiosAdapter.filtradoPorNombre(busqueda);
+                episodiosAdapter.filtradoPorTemporadaEpisodio(busqueda);
                 return true;
             }
         });

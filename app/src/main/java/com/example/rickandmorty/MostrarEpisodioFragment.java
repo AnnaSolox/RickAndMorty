@@ -14,7 +14,6 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.rickandmorty.adaptersRecyclerView.PersonajesAdapter;
 import com.example.rickandmorty.databinding.FragmentLocalizacionEpisodioBinding;
-import com.example.rickandmorty.utils.BottomNavUtil;
 import com.example.rickandmorty.utils.RecyclerViewPersonajes;
 import com.example.rickandmorty.viewmodels.EpisodioViewModel;
 import com.example.rickandmorty.viewmodels.PersonajeViewModel;

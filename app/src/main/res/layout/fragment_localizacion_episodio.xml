@@ -34,7 +34,7 @@
         app:layout_constraintGuide_percent=".18"/>
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/gh8"
+        android:id="@+id/gh3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
@@ -69,7 +69,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/lightAcidGreen"
-        app:layout_constraintBottom_toTopOf="@id/gh8"
+        app:layout_constraintBottom_toTopOf="@id/gh3"
         app:layout_constraintEnd_toStartOf="@id/viewDimension"
         app:layout_constraintStart_toEndOf="@id/gv1"
         app:layout_constraintTop_toBottomOf="@id/gh2"
@@ -107,7 +107,7 @@
         android:layout_height="0dp"
         app:layout_constraintStart_toEndOf="@id/viewTipo"
         app:layout_constraintTop_toBottomOf="@id/gh2"
-        app:layout_constraintBottom_toTopOf="@id/gh8"
+        app:layout_constraintBottom_toTopOf="@id/gh3"
         app:layout_constraintEnd_toStartOf="@id/gv2"
         android:background="@color/lightAcidGreen"
         android:layout_marginStart="5dp"/>
@@ -131,7 +131,7 @@
         android:layout_height="0dp"
         app:layout_constraintStart_toEndOf="@id/gv1"
         app:layout_constraintEnd_toStartOf="@id/gv2"
-        app:layout_constraintTop_toBottomOf="@id/gh8"
+        app:layout_constraintTop_toBottomOf="@id/gh3"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

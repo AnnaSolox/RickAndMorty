@@ -43,6 +43,7 @@ public class RecyclerViewLocalizaciones {
             @Override
             public boolean onQueryTextChange(String busqueda) {
                 localizacionesAdapter.filtradoPorNombre(busqueda);
+                localizacionesAdapter.filtradoPorTipo(busqueda);
                 return true;
             }
         });

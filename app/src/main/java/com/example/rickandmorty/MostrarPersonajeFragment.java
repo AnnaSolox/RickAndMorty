@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.example.rickandmorty.adaptersRecyclerView.EpisodiosAdapter;
 import com.example.rickandmorty.databinding.FragmentMostrarPersonajeBinding;
-import com.example.rickandmorty.utils.BottomNavUtil;
 import com.example.rickandmorty.utils.RecyclerViewEpisodios;
 import com.example.rickandmorty.viewmodels.EpisodioViewModel;
 import com.example.rickandmorty.viewmodels.PersonajeViewModel;
@@ -60,6 +59,19 @@ public class MostrarPersonajeFragment extends Fragment {
                 Glide.with(binding.imagePjItem.getContext()).load(personaje.getImagen()).into(binding.imagePjItem);
                 binding.itemRecyclerFragment.tituloRecycler.setText("Episodios");
                 episodioViewModel.cargarEpisodiosPorId(personaje.getEpisodios());
+
+                boolean esFavorito = personajeViewModel.esFavorito(personaje);
+                binding.favorito.setImageResource(esFavorito
+                        ? R.drawable.ic_rm_fav_checked
+                        : R.drawable.ic_rm_fav_unchecked);
+
+                binding.favorito.setOnClickListener(v -> {
+                    personaje.toggleFavorito();
+                    personajeViewModel.toggleFavorito(personaje);
+                    binding.favorito.setImageResource(personaje.isEsFavorito()
+                            ? R.drawable.ic_rm_fav_checked
+                            : R.drawable.ic_rm_fav_unchecked);
+                });
             }
         });
 

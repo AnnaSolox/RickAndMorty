@@ -61,4 +61,13 @@
             android:id="@+id/action_mostrarPersonajeFragment_to_mostrarEpisodioFragment"
             app:destination="@id/mostrarEpisodioFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/favoritosFragment"
+        android:name="com.example.rickandmorty.FavoritosFragment"
+        android:label="fragment_favoritos"
+        tools:layout="@layout/recyclerview_fragments" >
+        <action
+            android:id="@+id/action_favoritosFragment_to_mostrarPersonajeFragment"
+            app:destination="@id/mostrarPersonajeFragment" />
+    </fragment>
 </navigation>
