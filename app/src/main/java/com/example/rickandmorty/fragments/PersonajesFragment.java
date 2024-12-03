@@ -1,4 +1,4 @@
-package com.example.rickandmorty;
+package com.example.rickandmorty.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,11 +11,19 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.rickandmorty.R;
 import com.example.rickandmorty.adaptersRecyclerView.PersonajesAdapter;
 import com.example.rickandmorty.databinding.RecyclerviewFragmentsBinding;
 import com.example.rickandmorty.utils.RecyclerViewPersonajes;
 import com.example.rickandmorty.viewmodels.PersonajeViewModel;
 
+/**
+ * Fragmento encargado de mostrar la lista de personajes utilizando un {@link RecyclerViewPersonajes}.
+ * <p>
+ * Este fragmento utiliza el patrón MVVM para observar los datos de personajes desde el ViewModel.
+ * Incluye funcionalidades de búsqueda y navegación al detalle de un personaje.
+ * </p>
+ */
 public class PersonajesFragment extends Fragment {
     private RecyclerviewFragmentsBinding binding;
 
@@ -26,6 +34,13 @@ public class PersonajesFragment extends Fragment {
         return (binding = RecyclerviewFragmentsBinding.inflate(inflater, container, false)).getRoot();
     }
 
+    /**
+     * Configura el {@link RecyclerViewPersonajes}, observa los datos de personajes y gestiona la navegación
+     * hacia el detalle de un personaje seleccionado.
+     *
+     * @param view La vista raíz del fragmento.
+     * @param savedInstanceState El estado guardado del fragmento, si existe.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -38,7 +53,6 @@ public class PersonajesFragment extends Fragment {
         recyclerViewPersonajes.configurarBusqueda(binding.searchBar);
         binding.tituloRecycler.setText(R.string.titulo_recycler_personajes);
         personajeViewModel.cargarPerrsonajes();
-
     }
 
 }

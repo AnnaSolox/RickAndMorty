@@ -1,4 +1,4 @@
-package com.example.rickandmorty;
+package com.example.rickandmorty.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,11 +12,21 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.rickandmorty.R;
 import com.example.rickandmorty.adaptersRecyclerView.EpisodiosAdapter;
 import com.example.rickandmorty.databinding.RecyclerviewFragmentsBinding;
 import com.example.rickandmorty.utils.RecyclerViewEpisodios;
 import com.example.rickandmorty.viewmodels.EpisodioViewModel;
 
+/**
+ * Fragmento que muestra la lista de episodios en un {@link RecyclerViewEpisodios}.
+ * <p>
+ * Este fragmento se encarga de inflar el layout, configurar el {@link RecyclerViewEpisodios} para mostrar los episodios,
+ * inicializar el {@link EpisodiosAdapter} y gestionar la interacción entre el {@link EpisodioViewModel}
+ * y el adaptador. Además, configura una barra de búsqueda para filtrar los episodios y observa los cambios
+ * en los datos del ViewModel.
+ * </p>
+ */
 public class EpisodiosFragment extends Fragment {
     private RecyclerviewFragmentsBinding binding;
 
@@ -26,7 +36,13 @@ public class EpisodiosFragment extends Fragment {
         return (binding = RecyclerviewFragmentsBinding.inflate(inflater, container, false)).getRoot();
     }
 
-
+    /**
+     * Se llama después de que la vista del fragmento ha sido creada. Configura el {@link RecyclerViewEpisodios},
+     * el adaptador y observa el ViewModel para actualizar la lista de episodios.
+     *
+     * @param view La vista raíz del fragmento.
+     * @param savedInstanceState El estado guardado del fragmento, si existe.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

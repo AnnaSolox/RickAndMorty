@@ -51,9 +51,20 @@ public class EpisodioViewModel extends AndroidViewModel{
     public MutableLiveData<List<Episodio>> obtener() {return episodiosLiveData;}
     MutableLiveData<Episodio> episodioSeleccionado = new MutableLiveData<>();
 
+    /**
+     * Establece un episodio como seleccionado.
+     *
+     * @param episodio El episodio a seleccionar.
+     */
     public void seleccionar(Episodio episodio){
         Log.d("Episodio_ViewModel", "Episodio seleccionado " + episodio.getNombre());
         episodioSeleccionado.setValue(episodio);}
+
+    /**
+     * Devuelve el LiveData del episodio seleccionado.
+     *
+     * @return El LiveData que contiene el episodio seleccionado.
+     */
     public MutableLiveData<Episodio> seleccionado(){return episodioSeleccionado;}
 
     /**
@@ -135,6 +146,11 @@ public class EpisodioViewModel extends AndroidViewModel{
         Log.e("API ERROR", "EPISODIOS: " + throwable.getMessage());
     }
 
+    /**
+     * Carga episodios específicos por sus IDs desde una lista de URLs.
+     *
+     * @param urls Lista de URLs que contienen los IDs de los episodios a cargar.
+     */
     public void cargarEpisodiosPorId(List<String> urls) {
         isLoading.setValue(true);
         List<Episodio> listaEpisodios = new ArrayList<>();

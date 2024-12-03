@@ -17,12 +17,26 @@ import com.example.rickandmorty.viewmodels.LocalizacionViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Adaptador para manejar la lista de localizaciones en un {@link RecyclerView}.
+ * <p>
+ * Esta clase adapta los datos de la lista de {@link Localizacion} para ser mostrados en un
+ * {@link RecyclerView}, permitiendo la visualización de las localizaciones y el filtrado de
+ * las mismas por nombre o tipo.
+ * </p>
+ */
 public class LocalizacionesAdapter extends RecyclerView.Adapter<LocalizacionViewHolder> {
     private List<Localizacion> localizaciones = new ArrayList<>();
     private List<Localizacion> localizacionesOriginal;
     private final NavController navController;
     private final LocalizacionViewModel localizacionViewModel;
 
+    /**
+     * Constructor para crear una instancia del adaptador de localizaciones.
+     *
+     * @param localizacionViewModel El ViewModel asociado a las localizaciones.
+     * @param navController El controlador de navegación para manejar las acciones de navegación.
+     */
     public LocalizacionesAdapter(LocalizacionViewModel localizacionViewModel, NavController navController){
         this.localizacionViewModel = localizacionViewModel;
         this.navController = navController;
@@ -52,6 +66,11 @@ public class LocalizacionesAdapter extends RecyclerView.Adapter<LocalizacionView
         return localizaciones != null ? localizaciones.size() : 0;
     }
 
+    /**
+     * Establece la lista de localizaciones a mostrar.
+     *
+     * @param localizaciones Lista de localizaciones a mostrar.
+     */
     @SuppressLint("NotifyDataSetChanged")
     public void establecerLista(List<Localizacion> localizaciones){
         this.localizaciones = localizaciones;
@@ -59,12 +78,22 @@ public class LocalizacionesAdapter extends RecyclerView.Adapter<LocalizacionView
         notifyDataSetChanged();
     }
 
+    /**
+     * Filtra la lista de localizaciones por nombre.
+     *
+     * @param filtro Texto a filtrar.
+     */
     @SuppressLint("NotifyDataSetChanged")
     public void filtradoPorNombre(String filtro) {
         localizaciones = FiltradoUtilidad.filtro(localizacionesOriginal, filtro, (item, textoFiltro) -> item.getNombre().toLowerCase().contains(textoFiltro.toLowerCase()));
         notifyDataSetChanged();
     }
 
+    /**
+     * Filtra la lista de localizaciones por tipo.
+     *
+     * @param filtro Texto a filtrar.
+     */
     @SuppressLint("NotifyDataSetChanged")
     public void filtradoPorTipo(String filtro){
         localizaciones = FiltradoUtilidad.filtro(localizacionesOriginal, filtro, (item, textoFiltro) -> item.getTipo().toLowerCase().contains(textoFiltro.toLowerCase()));

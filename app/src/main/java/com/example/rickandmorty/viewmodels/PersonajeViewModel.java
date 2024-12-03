@@ -25,6 +25,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+/**
+ * ViewModel para gestionar la carga y la lógica de los personajes de la API de Rick and Morty.
+ * Esta clase se encarga de cargar los personajes desde la API, gestionar los favoritos
+ * y exponer los datos a la vista mediante LiveData.
+ */
 public class PersonajeViewModel extends AndroidViewModel {
     private final RMApiService rmApiService;
     @Getter
@@ -36,6 +41,12 @@ public class PersonajeViewModel extends AndroidViewModel {
      @Getter
     MutableLiveData<List<Personaje>> favoritosLiveData = new MutableLiveData<>();
 
+    /**
+     * Constructor del ViewModel.
+     * Inicializa el servicio de API y carga los favoritos almacenados.
+     *
+     * @param application Contexto de la aplicación.
+     */
     public PersonajeViewModel(@NonNull Application application) {
         super(application);
         Retrofit retrofit = RetrofitBuilder.getRetrofitBuilder();
@@ -48,11 +59,27 @@ public class PersonajeViewModel extends AndroidViewModel {
 
     MutableLiveData<Personaje> personajeSeleccionado = new MutableLiveData<>();
 
+    /**
+     * Establece el personaje seleccionado.
+     *
+     * @param personaje El personaje seleccionado.
+     */
     public void seleccionar(Personaje personaje){
         Log.d("Personaje_ViewModel", "Personaje seleccionado " + personaje.getNombre());
         personajeSeleccionado.setValue(personaje);}
+
+    /**
+     * Obtiene el LiveData del personaje seleccionado.
+     *
+     * @return LiveData del personaje seleccionado.
+     */
     public MutableLiveData<Personaje> seleccionado(){return personajeSeleccionado;}
 
+    /**
+     * Obtiene el LiveData del personaje seleccionado.
+     *
+     * @return LiveData del personaje seleccionado.
+     */
     public void cargarPerrsonajes(){
         isLoading.setValue(true);
         List<Personaje> listaPersonajes = new ArrayList<>();
@@ -71,6 +98,12 @@ public class PersonajeViewModel extends AndroidViewModel {
         });
     }
 
+    /**
+     * Carga las siguientes páginas de personajes si la API devuelve más resultados.
+     *
+     * @param siguienteUrl La URL de la siguiente página.
+     * @param listaPersonajes La lista de personajes cargados hasta ahora.
+     */
     private void cargarSiguientesPaginas(URI siguienteUrl, List<Personaje> listaPersonajes){
         if(siguienteUrl != null) {
             Call<PersonajeList> callSiguiente = rmApiService.getPersonajesFromNextUrl(siguienteUrl);
@@ -88,6 +121,12 @@ public class PersonajeViewModel extends AndroidViewModel {
         }
     }
 
+    /**
+     * Procesa la respuesta de la API y actualiza el LiveData con los resultados.
+     *
+     * @param response La respuesta de la API.
+     * @param listaPersonaje La lista de personajes a actualizar.
+     */
     private void procesarRespuesta(Response<PersonajeList> response, List<Personaje> listaPersonaje){
         if (response.body() != null) {
             PersonajeList personajeList = response.body();
@@ -104,10 +143,20 @@ public class PersonajeViewModel extends AndroidViewModel {
         }
     }
 
+    /**
+     * Maneja los errores de la carga de datos.
+     *
+     * @param throwable El error que ocurrió.
+     */
     private void manejarError(Throwable throwable){
         Log.e("API ERROR", "PERSONAJES: " + throwable.getMessage());
     }
 
+    /**
+     * Carga personajes basados en una lista de IDs.
+     *
+     * @param urls Lista de URLs de los personajes a cargar.
+     */
     public void cargarPersonajesPorIds(List<String> urls) {
         isLoading.setValue(true);
         List<Personaje> listaPersonajes = new ArrayList<>();
@@ -150,7 +199,11 @@ public class PersonajeViewModel extends AndroidViewModel {
         }
     }
 
-    //Añadir personajes a favoritos
+    /**
+     * Añade o elimina un personaje de la lista de favoritos.
+     *
+     * @param personaje El personaje a añadir o eliminar de favoritos.
+     */
     public void toggleFavorito(Personaje personaje) {
         if (favoritos.contains(personaje)) {
             favoritos.remove(personaje);
@@ -163,6 +216,12 @@ public class PersonajeViewModel extends AndroidViewModel {
         FavoritosJsonUtilidad.guardarFavoritos(getApplication().getApplicationContext(), favoritos);
     }
 
+    /**
+     * Verifica si un personaje está en la lista de favoritos.
+     *
+     * @param personaje El personaje a verificar.
+     * @return Verdadero si el personaje es favorito, falso en caso contrario.
+     */
     public boolean esFavorito(Personaje personaje) {
         return favoritos.contains(personaje);
     }

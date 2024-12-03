@@ -18,15 +18,31 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.rickandmorty.R;
 import com.example.rickandmorty.databinding.ActivitySecondBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * En esta actividad se habilita la navegación a través de los fragmentos {@code episodiosFragment},
+ * {@code personajesFragment} y {@code localizacionesFragment} mediante un {@link NavController}.
+ * También se configura el comportamiento de la barra de herramientas para manejar el menú de opciones
+ * y la visibilidad de los fragmentos en el {@code BottomNavigationView}.
+ */
+
 public class SecondActivity extends AppCompatActivity {
     private ActivitySecondBinding binding;
     private NavController navController;
 
+    /**
+     * Este método configura el {@link NavController}, la barra de herramientas, y el
+     * {@code BottomNavigationView}. También establece un listener para aplicar los márgenes
+     * de las barras del sistema y manejar la visibilidad de la barra de navegación según el
+     * fragmento actual.
+     *
+     * @param savedInstanceState El estado guardado de la actividad, si está disponible.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +61,6 @@ public class SecondActivity extends AppCompatActivity {
         navController = ((NavHostFragment) Objects.requireNonNull(
                 getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment)))
                 .getNavController();
-
-
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.episodiosFragment, R.id.personajesFragment, R.id.localizacionesFragment
@@ -70,15 +84,36 @@ public class SecondActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Infla el menú de opciones para esta actividad.
+     * <p>
+     * Este método carga el archivo de menú {@code menu_toolbar} para mostrar las opciones
+     * en la barra de herramientas.
+     * </p>
+     *
+     * @param menu El objeto {@link Menu} al que se añadirá el contenido del menú.
+     * @return {@code true} si el menú se ha creado correctamente.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_toolbar, menu);
         return true;
     }
 
+    /**
+     * Maneja la selección de un ítem del menú de opciones.
+     * <p>
+     * Este método maneja la interacción con los ítems del menú usando la navegación de destinos
+     * o el comportamiento predeterminado de la acción.
+     * </p>
+     *
+     * @param item El ítem seleccionado en el menú.
+     * @return {@code true} si el ítem se ha manejado correctamente, {@code false} de lo contrario.
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         return NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item);
     }
+
 
 }

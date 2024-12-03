@@ -1,4 +1,4 @@
-package com.example.rickandmorty;
+package com.example.rickandmorty.fragments;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -12,12 +12,20 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.rickandmorty.R;
 import com.example.rickandmorty.adaptersRecyclerView.PersonajesAdapter;
 import com.example.rickandmorty.databinding.FragmentLocalizacionEpisodioBinding;
 import com.example.rickandmorty.utils.RecyclerViewPersonajes;
 import com.example.rickandmorty.viewmodels.EpisodioViewModel;
 import com.example.rickandmorty.viewmodels.PersonajeViewModel;
 
+/**
+ * Fragmento encargado de mostrar los detalles de un episodio y los personajes asociados a él.
+ * <p>
+ * Este fragmento utiliza un {@link PersonajeViewModel} para observar el episodio seleccionado y cargar los personajes relacionados.
+ * Además, permite realizar búsquedas entre los personajes utilizando un {@link RecyclerViewPersonajes} configurado dinámicamente.
+ * </p>
+ */
 public class MostrarEpisodioFragment extends Fragment {
     private FragmentLocalizacionEpisodioBinding binding;
     private PersonajeViewModel personajeViewModel;
@@ -30,6 +38,13 @@ public class MostrarEpisodioFragment extends Fragment {
         return (binding = FragmentLocalizacionEpisodioBinding.inflate(inflater, container, false)).getRoot();
     }
 
+    /**
+     * Configura el {@link RecyclerViewPersonajes}, observa los cambios en el episodio seleccionado y gestiona la
+     * carga de personajes relacionados.
+     *
+     * @param view La vista raíz del fragmento.
+     * @param savedInstanceState El estado guardado del fragmento, si existe.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -65,4 +80,5 @@ public class MostrarEpisodioFragment extends Fragment {
             }
         });
     }
+
 }

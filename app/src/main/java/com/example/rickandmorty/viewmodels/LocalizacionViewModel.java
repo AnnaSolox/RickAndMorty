@@ -22,6 +22,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+/**
+ * ViewModel para gestionar la carga de localizaciones desde la API de Rick and Morty.
+ * La clase maneja la solicitud de localizaciones, la paginación de la respuesta y la actualización
+ * de datos en el UI a través de LiveData.
+ */
 public class LocalizacionViewModel extends AndroidViewModel {
     private final RMApiService rmApiService;
     @Getter
@@ -29,6 +34,11 @@ public class LocalizacionViewModel extends AndroidViewModel {
     @Getter
     private final MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
 
+    /**
+     * Constructor del ViewModel. Inicializa el servicio API utilizando Retrofit.
+     *
+     * @param application La aplicación actual.
+     */
     public LocalizacionViewModel(@NonNull Application application) {
         super(application);
 
@@ -36,19 +46,37 @@ public class LocalizacionViewModel extends AndroidViewModel {
         rmApiService = retrofit.create(RMApiService.class);
     }
 
-    //Cargar Localización individual:
-
+    /**
+     * Obtiene el LiveData que contiene la lista de localizaciones.
+     *
+     * @return MutableLiveData con la lista de localizaciones.
+     */
     public MutableLiveData<List<Localizacion>> obtener() {return localizacionLiveData;}
     MutableLiveData<Localizacion> localizacionSeleccionada = new MutableLiveData<>();
 
+    /**
+     * Establece una localización seleccionada.
+     *
+     * @param localizacion La localización seleccionada.
+     */
     public void seleccionar(Localizacion localizacion){
         Log.d("Localizacion_ViewModel", "Localizacion seleccionada " + localizacion.getNombre());
         localizacionSeleccionada.setValue(localizacion);}
+
+    /**
+     * Obtiene el LiveData con la localización seleccionada.
+     *
+     * @return MutableLiveData con la localización seleccionada.
+     */
     public MutableLiveData<Localizacion> seleccionada(){return localizacionSeleccionada;}
 
 
 
-    //Cargar datos de la API:
+    /**
+     * Inicia la carga de localizaciones desde la API de Rick and Morty.
+     * Realiza la solicitud y actualiza el LiveData con la lista de localizaciones.
+     * Si existen páginas adicionales, se cargarán automáticamente.
+     */
     public void cargarLocalizaciones(){
         isLoading.setValue(true);
         List<Localizacion> listadoLocalizaciones = new ArrayList<>();
@@ -67,6 +95,12 @@ public class LocalizacionViewModel extends AndroidViewModel {
         });
     }
 
+    /**
+     * Carga las siguientes páginas de localizaciones si la respuesta contiene un enlace hacia la siguiente página.
+     *
+     * @param siguienteUrl La URL de la siguiente página de localizaciones a cargar.
+     * @param listaLocalizaciones La lista donde se agregarán las localizaciones obtenidas.
+     */
     private void cargarSiguientesPaginas(URI siguienteUrl, List<Localizacion> listaLocalizaciones){
         if(siguienteUrl != null) {
             Call<LocalizacionList> callSiguiente = rmApiService.getLocalizacionFromNextUrl(siguienteUrl);
@@ -84,6 +118,13 @@ public class LocalizacionViewModel extends AndroidViewModel {
         }
     }
 
+    /**
+     * Procesa la respuesta de la API agregando las localizaciones a la lista proporcionada.
+     * Si hay más localizaciones disponibles, se realizará una solicitud adicional para obtenerlas.
+     *
+     * @param response La respuesta de la API que contiene la lista de localizaciones.
+     * @param listaLocalizacion La lista de localizaciones donde se agregarán las nuevas localizaciones.
+     */
     private void procesarRespuesta(Response<LocalizacionList> response, List<Localizacion> listaLocalizacion){
         if(response.body() != null) {
             LocalizacionList localizacionList = response.body();
@@ -100,6 +141,12 @@ public class LocalizacionViewModel extends AndroidViewModel {
         }
     }
 
+    /**
+     * Maneja los errores que ocurren durante la solicitud a la API.
+     * Registra un mensaje de error en los logs con el mensaje de excepción proporcionado.
+     *
+     * @param throwable El objeto que contiene la excepción que ocurrió durante la solicitud a la API.
+     */
     private void manejarError(Throwable throwable){
         Log.e("API ERROR", "LOCALIZACIONES: " + throwable.getMessage());
     }

@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/episodiosFragment"
-        android:name="com.example.rickandmorty.EpisodiosFragment"
+        android:name="com.example.rickandmorty.fragments.EpisodiosFragment"
         android:label="fragment_episodios"
         tools:layout="@layout/recyclerview_fragments"
         >
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/localizacionesFragment"
-        android:name="com.example.rickandmorty.LocalizacionesFragment"
+        android:name="com.example.rickandmorty.fragments.LocalizacionesFragment"
         android:label="fragment_localizaciones"
         tools:layout="@layout/recyclerview_fragments">
         <action
@@ -27,7 +27,7 @@
 
     <fragment
         android:id="@+id/personajesFragment"
-        android:name="com.example.rickandmorty.PersonajesFragment"
+        android:name="com.example.rickandmorty.fragments.PersonajesFragment"
         android:label="fragment_personajes"
         tools:layout="@layout/recyclerview_fragments">
         <action
@@ -36,7 +36,7 @@
     </fragment>
     <fragment
         android:id="@+id/mostrarLocalizacionFragment"
-        android:name="com.example.rickandmorty.MostrarLocalizacionFragment"
+        android:name="com.example.rickandmorty.fragments.MostrarLocalizacionFragment"
         android:label="fragment_mostrar_localizacion"
         tools:layout="@layout/fragment_localizacion_episodio" >
         <action
@@ -45,7 +45,7 @@
     </fragment>
     <fragment
         android:id="@+id/mostrarEpisodioFragment"
-        android:name="com.example.rickandmorty.MostrarEpisodioFragment"
+        android:name="com.example.rickandmorty.fragments.MostrarEpisodioFragment"
         android:label="fragment_mostrar_episodio"
         tools:layout="@layout/fragment_localizacion_episodio" >
         <action
@@ -54,7 +54,7 @@
     </fragment>
     <fragment
         android:id="@+id/mostrarPersonajeFragment"
-        android:name="com.example.rickandmorty.MostrarPersonajeFragment"
+        android:name="com.example.rickandmorty.fragments.MostrarPersonajeFragment"
         android:label="fragment_mostrar_personaje"
         tools:layout="@layout/fragment_mostrar_personaje" >
         <action
@@ -63,7 +63,7 @@
     </fragment>
     <fragment
         android:id="@+id/favoritosFragment"
-        android:name="com.example.rickandmorty.FavoritosFragment"
+        android:name="com.example.rickandmorty.fragments.FavoritosFragment"
         android:label="fragment_favoritos"
         tools:layout="@layout/recyclerview_fragments" >
         <action

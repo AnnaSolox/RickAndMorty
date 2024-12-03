@@ -1,4 +1,4 @@
-package com.example.rickandmorty;
+package com.example.rickandmorty.fragments;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.bumptech.glide.Glide;
+import com.example.rickandmorty.R;
 import com.example.rickandmorty.adaptersRecyclerView.EpisodiosAdapter;
 import com.example.rickandmorty.databinding.FragmentMostrarPersonajeBinding;
 import com.example.rickandmorty.utils.RecyclerViewEpisodios;
@@ -21,6 +22,13 @@ import com.example.rickandmorty.viewmodels.PersonajeViewModel;
 
 import java.util.Objects;
 
+/**
+ * Fragmento encargado de mostrar los detalles de un personaje seleccionado y la lista de episodios en los que aparece.
+ * <p>
+ * Este fragmento utiliza ViewModels para observar el personaje seleccionado y los episodios asociados,
+ * permitiendo además marcar el personaje como favorito.
+ * </p>
+ */
 public class MostrarPersonajeFragment extends Fragment {
     private FragmentMostrarPersonajeBinding binding;
     private EpisodioViewModel episodioViewModel;
@@ -33,6 +41,13 @@ public class MostrarPersonajeFragment extends Fragment {
         return (binding = FragmentMostrarPersonajeBinding.inflate(inflater,container,false)).getRoot();
     }
 
+    /**
+     * Configura el {@link RecyclerViewEpisodios}, observa los cambios en el personaje seleccionado y en los episodios asociados,
+     * y permite alternar el estado de favorito del personaje.
+     *
+     * @param view La vista raíz del fragmento.
+     * @param savedInstanceState El estado guardado del fragmento, si existe.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -59,11 +74,13 @@ public class MostrarPersonajeFragment extends Fragment {
                 binding.itemRecyclerFragment.tituloRecycler.setText(R.string.titulo_recycler_episodios);
                 episodioViewModel.cargarEpisodiosPorId(personaje.getEpisodios());
 
+                //Gestión del cambio de estado de botón de favorito en la ventana detalla de personaje.
                 boolean esFavorito = personajeViewModel.esFavorito(personaje);
                 binding.favorito.setImageResource(esFavorito
                         ? R.drawable.ic_rm_fav_checked
                         : R.drawable.ic_rm_fav_unchecked);
 
+                //Cambio de icono de botón según el estado
                 binding.favorito.setOnClickListener(v -> {
                     personaje.toggleFavorito();
                     personajeViewModel.toggleFavorito(personaje);

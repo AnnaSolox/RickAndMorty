@@ -1,4 +1,4 @@
-package com.example.rickandmorty;
+package com.example.rickandmorty.fragments;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -12,13 +12,20 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.rickandmorty.R;
 import com.example.rickandmorty.adaptersRecyclerView.PersonajesAdapter;
 import com.example.rickandmorty.databinding.FragmentLocalizacionEpisodioBinding;
 import com.example.rickandmorty.utils.RecyclerViewPersonajes;
 import com.example.rickandmorty.viewmodels.LocalizacionViewModel;
 import com.example.rickandmorty.viewmodels.PersonajeViewModel;
 
-
+/**
+ * Fragmento encargado de mostrar los detalles de una localización y los personajes residentes en ella.
+ * <p>
+ * Este fragmento utiliza {@link PersonajeViewModel} para observar la localización seleccionada y cargar los personajes asociados.
+ * Además, permite realizar búsquedas entre los personajes utilizando un {@link RecyclerViewPersonajes} configurado dinámicamente.
+ * </p>
+ */
 public class MostrarLocalizacionFragment extends Fragment {
     private FragmentLocalizacionEpisodioBinding binding;
     private PersonajeViewModel personajeViewModel;
@@ -30,6 +37,13 @@ public class MostrarLocalizacionFragment extends Fragment {
         // Inflate the layout for this fragment
         return (binding = FragmentLocalizacionEpisodioBinding.inflate(inflater, container, false)).getRoot();
     }
+    /**
+     * Configura el {@link RecyclerViewPersonajes}, observa los cambios en la localización seleccionada y gestiona la
+     * carga de personajes residentes.
+     *
+     * @param view La vista raíz del fragmento.
+     * @param savedInstanceState El estado guardado del fragmento, si existe.
+     */
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

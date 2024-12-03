@@ -17,9 +17,22 @@ import java.lang.reflect.Type;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Clase utilitaria para la gestión de personajes favoritos mediante un archivo JSON.
+ * <p>
+ * Proporciona métodos para guardar y cargar una lista de personajes favoritos desde
+ * el almacenamiento interno del dispositivo.
+ * </p>
+ */
 public class FavoritosJsonUtilidad {
     private static final String FAVORITOS_FILE = "favoritos.json";
 
+    /**
+     * Guarda la lista de personajes favoritos en un archivo JSON.
+     *
+     * @param context El contexto necesario para acceder al almacenamiento interno.
+     * @param favoritos Un {@link Set} de objetos {@link Personaje} que se guardarán.
+     */
     public static void guardarFavoritos(Context context, Set<Personaje> favoritos) {
         try {
             Gson gson = new Gson();
@@ -36,6 +49,13 @@ public class FavoritosJsonUtilidad {
         }
     }
 
+    /**
+     * Carga la lista de personajes favoritos desde un archivo JSON.
+     *
+     * @param context El contexto necesario para acceder al almacenamiento interno.
+     * @return Un {@link Set} de objetos {@link Personaje} cargados desde el archivo.
+     *         Si ocurre un error o el archivo no existe, se devuelve un conjunto vacío.
+     */
     public static Set<Personaje> cargarFavoritos(Context context) {
         Set<Personaje> favoritos = new HashSet<>();
         try {

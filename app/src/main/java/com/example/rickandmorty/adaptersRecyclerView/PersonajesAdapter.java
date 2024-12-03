@@ -20,6 +20,14 @@ import com.example.rickandmorty.viewmodels.PersonajeViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Adapter para mostrar una lista de personajes en un {@link RecyclerView}.
+ * <p>
+ * Este adaptador se encarga de gestionar la visualización de una lista de personajes en un {@link RecyclerView},
+ * permitiendo la carga de imágenes con {@link Glide}, la asignación de nombres a través de {@link ItemPersonajeBinding},
+ * y la navegación entre pantallas usando un {@link NavController}.
+ * </p>
+ */
 public class PersonajesAdapter extends RecyclerView.Adapter<PersonajeViewHolder> {
     private List<Personaje> personajes = new ArrayList<>();
     private List<Personaje> personajesOriginal;
@@ -28,6 +36,13 @@ public class PersonajesAdapter extends RecyclerView.Adapter<PersonajeViewHolder>
     private final int actionId;
 
 
+    /**
+     * Constructor para crear una instancia del adaptador de personajes.
+     *
+     * @param personajeViewModel El ViewModel asociado a los personajes.
+     * @param navController El controlador de navegación para manejar las transiciones.
+     * @param actionId El ID de acción para la navegación.
+     */
     public PersonajesAdapter(PersonajeViewModel personajeViewModel, NavController navController, int actionId){
         this.personajeViewModel = personajeViewModel;
         this.navController = navController;
@@ -47,14 +62,8 @@ public class PersonajesAdapter extends RecyclerView.Adapter<PersonajeViewHolder>
         holder.binding.toolItemPj.setTitle(personaje.getNombre());
 
         holder.itemView.setOnClickListener(view -> {
-            if (view.getContext() instanceof FragmentActivity) {
                 personajeViewModel.seleccionar(personaje);
                 navController.navigate(actionId);
-            } else {
-                Intent intent = new Intent(view.getContext(), SecondActivity.class);
-                intent.putExtra("personajeId", personaje.getId());
-                view.getContext().startActivity(intent);
-            }
         });
     }
 
@@ -63,6 +72,11 @@ public class PersonajesAdapter extends RecyclerView.Adapter<PersonajeViewHolder>
         return personajes != null ? personajes.size() : 0;
     }
 
+    /**
+     * Establece una nueva lista de personajes en el adaptador.
+     *
+     * @param personajes La nueva lista de personajes.
+     */
     @SuppressLint("NotifyDataSetChanged")
     public void establecerLista(List<Personaje> personajes){
         this.personajes = personajes;
@@ -70,6 +84,11 @@ public class PersonajesAdapter extends RecyclerView.Adapter<PersonajeViewHolder>
         notifyDataSetChanged();
     }
 
+    /**
+     * Filtra los personajes por nombre.
+     *
+     * @param filtro El texto para filtrar por nombre.
+     */
     @SuppressLint("NotifyDataSetChanged")
     public void filtradoPorNombre(String filtro) {
         personajes = FiltradoUtilidad.filtro(personajesOriginal, filtro, (item, textoFiltro) -> item.getNombre().toLowerCase().contains(textoFiltro.toLowerCase()));

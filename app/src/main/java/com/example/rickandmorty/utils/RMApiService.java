@@ -13,6 +13,11 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Url;
 
+/**
+ * Interfaz que define los endpoints de la API de Rick and Morty utilizando Retrofit.
+ * Contiene métodos para obtener listas de personajes, localizaciones y episodios,
+ * así como la capacidad de buscar un elemento por su ID o cargar las siguientes páginas de resultados.
+ */
 public interface RMApiService {
     //"https://rickandmortyapi.com/api/";
 
