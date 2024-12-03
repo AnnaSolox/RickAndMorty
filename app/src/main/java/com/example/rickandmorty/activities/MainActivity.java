@@ -36,10 +36,5 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this,SecondActivity.class);
             startActivity(intent);
         });
-
-        binding.btnFavoritos.setOnClickListener(v -> {
-            Intent intent = new Intent(this,SecondActivity.class);
-            startActivity(intent);
-        });
     }
 }

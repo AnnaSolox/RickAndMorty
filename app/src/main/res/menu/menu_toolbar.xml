@@ -5,8 +5,4 @@
         android:id="@+id/favoritosFragment"
         android:title="Favoritos"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/personajesFragment"
-        android:title="Personajes"
-        app:showAsAction="never" />
 </menu>

@@ -16,12 +16,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.rickandmorty.FavoritosFragment;
 import com.example.rickandmorty.R;
 import com.example.rickandmorty.databinding.ActivityMainBinding;
 import com.example.rickandmorty.databinding.ActivitySecondBinding;
@@ -38,7 +40,6 @@ public class SecondActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*EdgeToEdge.enable(this);*/
         binding = ActivitySecondBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -56,8 +57,9 @@ public class SecondActivity extends AppCompatActivity {
                 .getNavController();
 
 
+
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.episodiosFragment, R.id.personajesFragment, R.id.localizacionesFragment, R.id.favoritosFragment
+                R.id.episodiosFragment, R.id.personajesFragment, R.id.localizacionesFragment
         ).build();
 
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);

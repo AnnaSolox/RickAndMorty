@@ -39,21 +39,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".1" />
+        app:layout_constraintGuide_percent=".15" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gh2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".55" />
+        app:layout_constraintGuide_percent=".6" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gh3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".58" />
+        app:layout_constraintGuide_percent=".65" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gh4"
@@ -72,15 +72,6 @@
         app:layout_constraintTop_toBottomOf="@id/gh1"
         android:adjustViewBounds="true"/>
 
-    <Button
-        android:id="@+id/btnFavoritos"
-        android:layout_width="0dp"
-        android:layout_height="65dp"
-        android:text="@string/btnFavoritos"
-        app:layout_constraintBottom_toTopOf="@id/btnRickypedia"
-        app:layout_constraintEnd_toStartOf="@+id/gv2"
-        app:layout_constraintStart_toEndOf="@id/gv1"
-        app:layout_constraintTop_toBottomOf="@id/gh3" />
 
     <Button
         android:id="@+id/btnRickypedia"
@@ -90,6 +81,6 @@
         app:layout_constraintBottom_toTopOf="@id/gh4"
         app:layout_constraintEnd_toStartOf="@+id/gv2"
         app:layout_constraintStart_toEndOf="@id/gv1"
-        app:layout_constraintTop_toBottomOf="@id/btnFavoritos" />
+        app:layout_constraintTop_toBottomOf="@id/gh3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
