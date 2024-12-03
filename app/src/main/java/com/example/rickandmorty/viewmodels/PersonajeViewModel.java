@@ -80,7 +80,7 @@ public class PersonajeViewModel extends AndroidViewModel {
      *
      * @return LiveData del personaje seleccionado.
      */
-    public void cargarPerrsonajes(){
+    public void cargarPersonajes(){
         isLoading.setValue(true);
         List<Personaje> listaPersonajes = new ArrayList<>();
 

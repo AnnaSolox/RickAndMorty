@@ -52,7 +52,7 @@ public class PersonajesFragment extends Fragment {
         recyclerViewPersonajes.observarPersonajes(getViewLifecycleOwner());
         recyclerViewPersonajes.configurarBusqueda(binding.searchBar);
         binding.tituloRecycler.setText(R.string.titulo_recycler_personajes);
-        personajeViewModel.cargarPerrsonajes();
+        personajeViewModel.cargarPersonajes();
     }
 
 }
