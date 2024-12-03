@@ -1,31 +1,19 @@
 package com.example.rickandmorty.viewmodels;
 
 import android.app.Application;
-import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.rickandmorty.models.Episodio;
 import com.example.rickandmorty.models.Personaje;
 import com.example.rickandmorty.models.PersonajeList;
 import com.example.rickandmorty.utils.FavoritosJsonUtilidad;
 import com.example.rickandmorty.utils.RMApiService;
 import com.example.rickandmorty.utils.RetrofitBuilder;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.reflect.Type;
 import java.net.URI;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -58,7 +46,6 @@ public class PersonajeViewModel extends AndroidViewModel {
 
     //Cargar Personaje individual:
 
-    public MutableLiveData<List<Personaje>> obtener() {return personajeLiveData;}
     MutableLiveData<Personaje> personajeSeleccionado = new MutableLiveData<>();
 
     public void seleccionar(Personaje personaje){
@@ -127,7 +114,7 @@ public class PersonajeViewModel extends AndroidViewModel {
 
         Log.d("PersonajesViewModel", "Cargando personajes por ID: " + urls.toString());
 
-        if (urls == null || urls.isEmpty()) {
+        if (urls.isEmpty()) {
             Log.e("PersonajeViewModel", "La lista de residentes está vacía o nula.");
             isLoading.setValue(false);
             return;
@@ -139,7 +126,7 @@ public class PersonajeViewModel extends AndroidViewModel {
             Call<Personaje> call = rmApiService.getPersonajeById(id);
             call.enqueue(new Callback<Personaje>() {
                 @Override
-                public void onResponse(Call<Personaje> call, Response<Personaje> response) {
+                public void onResponse(@NonNull Call<Personaje> call, @NonNull Response<Personaje> response) {
                     if (response.body() != null) {
                         listaPersonajes.add(response.body());
                         Log.d("PersonajeViewModel", "Personaje cargado: " + response.body().getNombre());
@@ -155,7 +142,7 @@ public class PersonajeViewModel extends AndroidViewModel {
                 }
 
                 @Override
-                public void onFailure(Call<Personaje> call, Throwable throwable) {
+                public void onFailure(@NonNull Call<Personaje> call, @NonNull Throwable throwable) {
                     Log.e("PersonajeViewModel", "Error al cargar personaje ID: " + id + " Error: " + throwable.getMessage());
                     manejarError(throwable);
                 }

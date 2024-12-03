@@ -1,11 +1,17 @@
 <resources>
     <string name="app_name">RickAndMorty</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="btnPersonajes">PERSONAJES</string>
-    <string name="btnFavoritos">FAVORITOS</string>
+    <!--BOTÓN PRINCIPAL-->
     <string name="btnEpisodios">RICKYPEDIA</string>
-    <string name="localizacionesTitleFragment">Localizaciones</string>
-    <string name="personajesTitleFragment">Personajes</string>
-    <string name="favoritosTitleFragment">Favoritos</string>
+    <!--TITULOS RECYCLER-->
+    <string name="titulo_recycler_localizaciones">Localizaciones</string>
+    <string name="titulo_recycler_personajes">Personajes</string>
+    <string name="titulo_recycler_favoritos">Favoritos</string>
+    <string name="titulo_recycler_episodios">Episodios</string>
+    <string name="titulo_recycler_residentes">Residentes</string>
+    <!--DESCRIPCIONES CAMPOS LOCALIZACIÓN Y EPISODIO-->
+    <string name="descr_info1_localizacion">Tipo</string>
+    <string name="descr_info2_localizacion">Dimensión:</string>
+    <string name="descr_info1_episodio">Temporada/Epìsodio</string>
+    <string name="descr_info2_episodio">Fecha lanzamiento</string>
+
 </resources>

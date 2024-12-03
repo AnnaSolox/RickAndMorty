@@ -12,9 +12,9 @@ import com.example.rickandmorty.adaptersRecyclerView.EpisodiosAdapter;
 import com.example.rickandmorty.viewmodels.EpisodioViewModel;
 
 public class RecyclerViewEpisodios {
-    private RecyclerView recyclerView;
-    private EpisodiosAdapter episodiosAdapter;
-    private EpisodioViewModel episodioViewModel;
+    private final RecyclerView recyclerView;
+    private final EpisodiosAdapter episodiosAdapter;
+    private final EpisodioViewModel episodioViewModel;
 
     public RecyclerViewEpisodios(RecyclerView recyclerView, EpisodioViewModel episodioViewModel, EpisodiosAdapter episodiosAdapter){
         this.recyclerView = recyclerView;

@@ -18,8 +18,6 @@ import com.example.rickandmorty.viewmodels.LocalizacionViewModel;
 
 public class LocalizacionesFragment extends Fragment {
     private RecyclerviewFragmentsBinding binding;
-    private LocalizacionesAdapter localizacionesAdapter;
-    private LocalizacionViewModel localizacionViewModel;
 
 
     @Override
@@ -33,14 +31,14 @@ public class LocalizacionesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        localizacionViewModel = new ViewModelProvider(requireActivity()).get(LocalizacionViewModel.class);
-        localizacionesAdapter = new LocalizacionesAdapter(localizacionViewModel, NavHostFragment.findNavController(this));
+        LocalizacionViewModel localizacionViewModel = new ViewModelProvider(requireActivity()).get(LocalizacionViewModel.class);
+        LocalizacionesAdapter localizacionesAdapter = new LocalizacionesAdapter(localizacionViewModel, NavHostFragment.findNavController(this));
 
-        RecyclerViewLocalizaciones recyclerViewLocalizaciones = new RecyclerViewLocalizaciones(binding.itemRecycler,localizacionViewModel, localizacionesAdapter);
+        RecyclerViewLocalizaciones recyclerViewLocalizaciones = new RecyclerViewLocalizaciones(binding.itemRecycler, localizacionViewModel, localizacionesAdapter);
         recyclerViewLocalizaciones.setupRecyclerView(getContext());
         recyclerViewLocalizaciones.observarPersonajes(getViewLifecycleOwner());
         recyclerViewLocalizaciones.configurarBusqueda(binding.searchBar);
-        binding.tituloRecycler.setText(R.string.localizacionesTitleFragment);
+        binding.tituloRecycler.setText(R.string.titulo_recycler_localizaciones);
         localizacionViewModel.cargarLocalizaciones();
         localizacionViewModel.obtener().observe(getViewLifecycleOwner(), localizacionesAdapter::establecerLista);
     }

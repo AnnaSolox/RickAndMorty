@@ -19,11 +19,9 @@ import com.example.rickandmorty.viewmodels.EpisodioViewModel;
 
 public class EpisodiosFragment extends Fragment {
     private RecyclerviewFragmentsBinding binding;
-    private EpisodioViewModel episodioViewModel;
-    private EpisodiosAdapter episodiosAdapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return (binding = RecyclerviewFragmentsBinding.inflate(inflater, container, false)).getRoot();
     }
@@ -33,17 +31,17 @@ public class EpisodiosFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        episodioViewModel = new ViewModelProvider(requireActivity()).get(EpisodioViewModel.class);
-        episodiosAdapter = new EpisodiosAdapter(episodioViewModel, NavHostFragment.findNavController(this), R.id.action_episodiosFragment_to_mostrarEpisodioFragment);
+        EpisodioViewModel episodioViewModel = new ViewModelProvider(requireActivity()).get(EpisodioViewModel.class);
+        EpisodiosAdapter episodiosAdapter = new EpisodiosAdapter(episodioViewModel, NavHostFragment.findNavController(this), R.id.action_episodiosFragment_to_mostrarEpisodioFragment);
 
         binding.itemRecycler.setAdapter(episodiosAdapter);
         binding.itemRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        RecyclerViewEpisodios recyclerEpisodios = new RecyclerViewEpisodios(binding.itemRecycler,episodioViewModel, episodiosAdapter);
+        RecyclerViewEpisodios recyclerEpisodios = new RecyclerViewEpisodios(binding.itemRecycler, episodioViewModel, episodiosAdapter);
         recyclerEpisodios.setupRecyclerView(getContext());
         recyclerEpisodios.observarEpisodios(getViewLifecycleOwner());
         recyclerEpisodios.configurarBusqueda(binding.searchBar);
-        binding.tituloRecycler.setText("Episodios");
+        binding.tituloRecycler.setText(R.string.titulo_recycler_episodios);
         episodioViewModel.cargarEpisodios();
         episodioViewModel.obtener().observe(getViewLifecycleOwner(), episodiosAdapter::establecerLista);
 

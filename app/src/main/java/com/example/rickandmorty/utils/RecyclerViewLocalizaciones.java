@@ -12,9 +12,9 @@ import com.example.rickandmorty.adaptersRecyclerView.LocalizacionesAdapter;
 import com.example.rickandmorty.viewmodels.LocalizacionViewModel;
 
 public class RecyclerViewLocalizaciones {
-    private RecyclerView recyclerView;
-    private LocalizacionesAdapter localizacionesAdapter;
-    private LocalizacionViewModel localizacionViewModel;
+    private final RecyclerView recyclerView;
+    private final LocalizacionesAdapter localizacionesAdapter;
+    private final LocalizacionViewModel localizacionViewModel;
 
     public RecyclerViewLocalizaciones(RecyclerView recyclerView, LocalizacionViewModel localizacionViewModel, LocalizacionesAdapter localizacionesAdapter){
         this.recyclerView = recyclerView;

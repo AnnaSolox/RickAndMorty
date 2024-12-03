@@ -4,8 +4,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.rickandmorty.databinding.ItemPersonajeBinding;
 
-import lombok.NonNull;
-
 public class PersonajeViewHolder extends RecyclerView.ViewHolder {
     final ItemPersonajeBinding binding;
 

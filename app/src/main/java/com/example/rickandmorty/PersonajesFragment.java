@@ -18,12 +18,10 @@ import com.example.rickandmorty.viewmodels.PersonajeViewModel;
 
 public class PersonajesFragment extends Fragment {
     private RecyclerviewFragmentsBinding binding;
-    private PersonajeViewModel personajeViewModel;
-    private PersonajesAdapter personajesAdapter;
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return (binding = RecyclerviewFragmentsBinding.inflate(inflater, container, false)).getRoot();
     }
@@ -32,13 +30,13 @@ public class PersonajesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        personajeViewModel = new ViewModelProvider(requireActivity()).get(PersonajeViewModel.class);
-        personajesAdapter = new PersonajesAdapter(personajeViewModel, NavHostFragment.findNavController(this), R.id.action_personajesFragment_to_mostrarPersonajeFragment);
+        PersonajeViewModel personajeViewModel = new ViewModelProvider(requireActivity()).get(PersonajeViewModel.class);
+        PersonajesAdapter personajesAdapter = new PersonajesAdapter(personajeViewModel, NavHostFragment.findNavController(this), R.id.action_personajesFragment_to_mostrarPersonajeFragment);
         RecyclerViewPersonajes recyclerViewPersonajes = new RecyclerViewPersonajes(binding.itemRecycler, personajeViewModel, personajesAdapter);
         recyclerViewPersonajes.setupRecyclerView(getContext());
         recyclerViewPersonajes.observarPersonajes(getViewLifecycleOwner());
         recyclerViewPersonajes.configurarBusqueda(binding.searchBar);
-        binding.tituloRecycler.setText(R.string.personajesTitleFragment);
+        binding.tituloRecycler.setText(R.string.titulo_recycler_personajes);
         personajeViewModel.cargarPerrsonajes();
 
     }

@@ -24,7 +24,7 @@ public class MostrarEpisodioFragment extends Fragment {
     private PersonajesAdapter personajesAdapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return (binding = FragmentLocalizacionEpisodioBinding.inflate(inflater, container, false)).getRoot();
@@ -45,11 +45,11 @@ public class MostrarEpisodioFragment extends Fragment {
         episodioViewModel.seleccionado().observe(getViewLifecycleOwner(), episodio -> {
             if(episodio != null){
                 binding.titulo.setText(episodio.getNombre());
-                binding.descriptionInfo1.setText("Teporada/Epìsodio");
+                binding.descriptionInfo1.setText(R.string.descr_info1_episodio);
                 binding.info1.setText(episodio.getIdentificador());
-                binding.descriptionInfo2.setText("Fecha lanzamiento");
+                binding.descriptionInfo2.setText(R.string.descr_info2_episodio);
                 binding.info2.setText(episodio.getFechaLanzamiento().toString());
-                binding.itemRecyclerFragment.tituloRecycler.setText("Personajes");
+                binding.itemRecyclerFragment.tituloRecycler.setText(R.string.titulo_recycler_personajes);
                 personajeViewModel.cargarPersonajesPorIds(episodio.getPersonajes());
             } else {
                 Log.e("Fragment", "El episodio seleccionado es nulo");
@@ -58,7 +58,7 @@ public class MostrarEpisodioFragment extends Fragment {
 
         personajeViewModel.getPersonajeLiveData().observe(getViewLifecycleOwner(), personajes -> {
             Log.d("PersonajesLocalizacion", "Tamaño de la lista de personajes: " + personajes.size());
-            if (personajes != null && !personajes.isEmpty()) {
+            if (!personajes.isEmpty()) {
                 personajesAdapter.establecerLista(personajes);
             } else {
                 Log.e("Personajes", "La lista de personajes está vacía.");

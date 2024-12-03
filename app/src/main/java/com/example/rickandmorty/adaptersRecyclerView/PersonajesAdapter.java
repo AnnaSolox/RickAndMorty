@@ -1,6 +1,6 @@
 package com.example.rickandmorty.adaptersRecyclerView;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -63,12 +63,14 @@ public class PersonajesAdapter extends RecyclerView.Adapter<PersonajeViewHolder>
         return personajes != null ? personajes.size() : 0;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void establecerLista(List<Personaje> personajes){
         this.personajes = personajes;
         this.personajesOriginal = new ArrayList<>(personajes);
         notifyDataSetChanged();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void filtradoPorNombre(String filtro) {
         personajes = FiltradoUtilidad.filtro(personajesOriginal, filtro, (item, textoFiltro) -> item.getNombre().toLowerCase().contains(textoFiltro.toLowerCase()));
         notifyDataSetChanged();

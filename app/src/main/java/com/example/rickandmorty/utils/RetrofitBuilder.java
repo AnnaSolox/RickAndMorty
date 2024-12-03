@@ -6,7 +6,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitBuilder {
-    private Retrofit retrofit;
 
     public static Retrofit getRetrofitBuilder(){
         Gson gson = GsonConfig.getGson();

@@ -1,17 +1,16 @@
 package com.example.rickandmorty;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
-
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.example.rickandmorty.adaptersRecyclerView.EpisodiosAdapter;
@@ -28,7 +27,7 @@ public class MostrarPersonajeFragment extends Fragment {
     private EpisodiosAdapter episodiosAdapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return (binding = FragmentMostrarPersonajeBinding.inflate(inflater,container,false)).getRoot();
@@ -57,7 +56,7 @@ public class MostrarPersonajeFragment extends Fragment {
                 binding.valorOrigen.setText(personaje.getOrigen().getNombre());
                 binding.valorLocalizacion.setText(personaje.getLocalizacion().getNombre());
                 Glide.with(binding.imagePjItem.getContext()).load(personaje.getImagen()).into(binding.imagePjItem);
-                binding.itemRecyclerFragment.tituloRecycler.setText("Episodios");
+                binding.itemRecyclerFragment.tituloRecycler.setText(R.string.titulo_recycler_episodios);
                 episodioViewModel.cargarEpisodiosPorId(personaje.getEpisodios());
 
                 boolean esFavorito = personajeViewModel.esFavorito(personaje);
@@ -77,7 +76,7 @@ public class MostrarPersonajeFragment extends Fragment {
 
         episodioViewModel.getEpisodiosLiveData().observe(getViewLifecycleOwner(), episodios -> {
             Log.d("PersonajesLocalizacion", "Tamaño de la lista de personajes: " + episodios.size());
-            if (episodios != null && !episodios.isEmpty()) {
+            if (!episodios.isEmpty()) {
                 episodiosAdapter.establecerLista(episodios);
             } else {
                 Log.e("Personajes", "La lista de personajes está vacía.");

@@ -1,5 +1,6 @@
 package com.example.rickandmorty.adaptersRecyclerView;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -51,17 +52,20 @@ public class LocalizacionesAdapter extends RecyclerView.Adapter<LocalizacionView
         return localizaciones != null ? localizaciones.size() : 0;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void establecerLista(List<Localizacion> localizaciones){
         this.localizaciones = localizaciones;
         this.localizacionesOriginal = new ArrayList<>(localizaciones);
         notifyDataSetChanged();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void filtradoPorNombre(String filtro) {
         localizaciones = FiltradoUtilidad.filtro(localizacionesOriginal, filtro, (item, textoFiltro) -> item.getNombre().toLowerCase().contains(textoFiltro.toLowerCase()));
         notifyDataSetChanged();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void filtradoPorTipo(String filtro){
         localizaciones = FiltradoUtilidad.filtro(localizacionesOriginal, filtro, (item, textoFiltro) -> item.getTipo().toLowerCase().contains(textoFiltro.toLowerCase()));
         notifyDataSetChanged();

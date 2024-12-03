@@ -39,7 +39,7 @@ public class FavoritosFragment extends Fragment {
         recyclerViewPersonajes.setupRecyclerView(getContext());
         recyclerViewPersonajes.observarFavoritos(getViewLifecycleOwner());
         recyclerViewPersonajes.configurarBusqueda(binding.searchBar);
-        binding.tituloRecycler.setText(R.string.favoritosTitleFragment);
+        binding.tituloRecycler.setText(R.string.titulo_recycler_favoritos);
 
         personajeViewModel.getFavoritosLiveData().observe(getViewLifecycleOwner(), personajes -> {
             personajesAdapter.establecerLista(personajes);

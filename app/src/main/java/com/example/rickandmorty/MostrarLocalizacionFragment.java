@@ -25,7 +25,7 @@ public class MostrarLocalizacionFragment extends Fragment {
     private PersonajesAdapter personajesAdapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return (binding = FragmentLocalizacionEpisodioBinding.inflate(inflater, container, false)).getRoot();
@@ -46,11 +46,11 @@ public class MostrarLocalizacionFragment extends Fragment {
         localizacionViewModel.seleccionada().observe(getViewLifecycleOwner(), localizacion -> {
             if(localizacion != null){
                 binding.titulo.setText(localizacion.getNombre());
-                binding.descriptionInfo1.setText("Tipo");
+                binding.descriptionInfo1.setText(R.string.descr_info1_localizacion);
                 binding.info1.setText(localizacion.getDimension());
-                binding.descriptionInfo2.setText("Dimensión:");
+                binding.descriptionInfo2.setText(R.string.descr_info2_localizacion);
                 binding.info2.setText(localizacion.getTipo());
-                binding.itemRecyclerFragment.tituloRecycler.setText("Residentes");
+                binding.itemRecyclerFragment.tituloRecycler.setText(R.string.titulo_recycler_residentes);
                 personajeViewModel.cargarPersonajesPorIds(localizacion.getResidentes());
             } else {
                 Log.e("Fragment", "La localización seleccionada es nula");
@@ -59,7 +59,7 @@ public class MostrarLocalizacionFragment extends Fragment {
 
         personajeViewModel.getPersonajeLiveData().observe(getViewLifecycleOwner(), personajes -> {
             Log.d("PersonajesLocalizacion", "Tamaño de la lista de personajes: " + personajes.size());
-            if (personajes != null && !personajes.isEmpty()) {
+            if (!personajes.isEmpty()) {
                 personajesAdapter.establecerLista(personajes);
             } else {
                 Log.e("Personajes", "La lista de personajes está vacía.");

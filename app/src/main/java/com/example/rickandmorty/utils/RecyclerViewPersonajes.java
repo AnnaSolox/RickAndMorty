@@ -2,8 +2,8 @@ package com.example.rickandmorty.utils;
 
 import android.content.Context;
 import android.util.Log;
-import androidx.appcompat.widget.SearchView;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,9 +12,9 @@ import com.example.rickandmorty.adaptersRecyclerView.PersonajesAdapter;
 import com.example.rickandmorty.viewmodels.PersonajeViewModel;
 
 public class RecyclerViewPersonajes {
-    private RecyclerView recyclerView;
-    private PersonajesAdapter personajesAdapter;
-    private PersonajeViewModel personajeViewModel;
+    private final RecyclerView recyclerView;
+    private final PersonajesAdapter personajesAdapter;
+    private final PersonajeViewModel personajeViewModel;
 
     public RecyclerViewPersonajes(RecyclerView recyclerView, PersonajeViewModel personajeViewModel, PersonajesAdapter personajesAdapter){
         this.recyclerView = recyclerView;
@@ -35,9 +35,7 @@ public class RecyclerViewPersonajes {
     }
 
     public void observarFavoritos(LifecycleOwner lifecycleOwner) {
-        personajeViewModel.getFavoritosLiveData().observe(lifecycleOwner, favoritos -> {
-            personajesAdapter.establecerLista(favoritos);
-        });
+        personajeViewModel.getFavoritosLiveData().observe(lifecycleOwner, personajesAdapter::establecerLista);
     }
 
     public void configurarBusqueda(SearchView searchBar) {

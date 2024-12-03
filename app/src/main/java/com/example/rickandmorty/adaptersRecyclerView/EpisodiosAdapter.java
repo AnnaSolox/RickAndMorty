@@ -1,5 +1,6 @@
 package com.example.rickandmorty.adaptersRecyclerView;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -7,12 +8,10 @@ import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.rickandmorty.R;
 import com.example.rickandmorty.databinding.ItemEpisodioBinding;
 import com.example.rickandmorty.models.Episodio;
 import com.example.rickandmorty.utils.FiltradoUtilidad;
 import com.example.rickandmorty.viewmodels.EpisodioViewModel;
-import com.example.rickandmorty.viewmodels.LocalizacionViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,17 +54,20 @@ public class EpisodiosAdapter extends RecyclerView.Adapter<EpisodioViewHolder> {
         return episodios != null ? episodios.size() : 0;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void establecerLista(List<Episodio> episodios) {
         this.episodios = episodios;
         this.episodiosOriginal = new ArrayList<>(episodios);
         notifyDataSetChanged();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void filtradoPorNombre(String filtro) {
         episodios = FiltradoUtilidad.filtro(episodiosOriginal, filtro, (item, textoFiltro) -> item.getNombre().toLowerCase().contains(textoFiltro.toLowerCase()));
         notifyDataSetChanged();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void filtradoPorTemporadaEpisodio(String filtro){
         episodios = FiltradoUtilidad.filtro(episodiosOriginal, filtro, (item, textoFiltro) -> item.getIdentificador().toLowerCase().contains(textoFiltro.toLowerCase()));
         notifyDataSetChanged();

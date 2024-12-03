@@ -1,33 +1,23 @@
 package com.example.rickandmorty.activities;
 
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.window.OnBackInvokedDispatcher;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.rickandmorty.FavoritosFragment;
 import com.example.rickandmorty.R;
-import com.example.rickandmorty.databinding.ActivityMainBinding;
 import com.example.rickandmorty.databinding.ActivitySecondBinding;
-import com.example.rickandmorty.databinding.BottomNavViewBinding;
 
 import java.util.Arrays;
 import java.util.List;

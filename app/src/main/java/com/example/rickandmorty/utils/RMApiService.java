@@ -2,7 +2,6 @@ package com.example.rickandmorty.utils;
 
 import com.example.rickandmorty.models.Episodio;
 import com.example.rickandmorty.models.EpisodioList;
-import com.example.rickandmorty.models.Localizacion;
 import com.example.rickandmorty.models.LocalizacionList;
 import com.example.rickandmorty.models.Personaje;
 import com.example.rickandmorty.models.PersonajeList;
@@ -45,10 +44,6 @@ public interface RMApiService {
     //endpoint personaje por id
     @GET("character/{id}")
     Call<Personaje> getPersonajeById(@Path("id") String id);
-
-    //endpoint localizacion por id
-    @GET("location/{id}")
-    Call<Localizacion> getLocalizacionById(@Path("id") String id);
 
     //endpoint episodio por id
     @GET("episode/{id}")
