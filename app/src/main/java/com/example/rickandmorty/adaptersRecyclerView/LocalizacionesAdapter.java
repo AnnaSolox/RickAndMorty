@@ -85,11 +85,9 @@ public class LocalizacionesAdapter extends RecyclerView.Adapter<LocalizacionView
      */
     @SuppressLint("NotifyDataSetChanged")
     public void filtradoPorNombreYTipo(String filtro) {
-        // Si el filtro está vacío, restauramos la lista original
         if (filtro.isEmpty()) {
             localizaciones = new ArrayList<>(localizacionesOriginal);
         } else {
-            // Filtrar por nombre y por tipo
             localizaciones = FiltradoUtilidad.filtro(localizacionesOriginal, filtro, (item, textoFiltro) ->
                     item.getNombre().toLowerCase().contains(textoFiltro.toLowerCase()) ||
                             item.getTipo().toLowerCase().contains(textoFiltro.toLowerCase())
