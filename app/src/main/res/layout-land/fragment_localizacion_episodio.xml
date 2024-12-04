@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.MostrarLocalizacionFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gv1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".05"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gv2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".3" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gv3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".95"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gh1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gh2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".9"/>
+
+
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        style="@style/titulosFragmentsIndividuales"
+        tools:text="LOCALIZACIÓN"
+        app:layout_constraintStart_toStartOf="@id/gv1"
+        app:layout_constraintEnd_toEndOf="@id/gv3"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="start|center"
+        app:layout_constraintBottom_toTopOf="@id/gh1"/>
+
+    <TextView
+        android:id="@+id/descriptionInfo1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="5dp"
+        android:gravity="center"
+        tools:text="DescrInfo1"
+        app:layout_constraintStart_toStartOf="@id/gv1"
+        app:layout_constraintEnd_toEndOf="@id/viewTipo"
+        app:layout_constraintTop_toBottomOf="@id/gh1"
+        app:layout_constraintBottom_toTopOf="@id/viewTipo"
+        android:textColor="@color/darkAcidGreen"/>
+
+    <View
+        android:id="@+id/viewTipo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/lightAcidGreen"
+        app:layout_constraintBottom_toTopOf="@id/descriptionInfo2"
+        app:layout_constraintEnd_toStartOf="@id/gv2"
+        app:layout_constraintStart_toEndOf="@id/gv1"
+        app:layout_constraintTop_toBottomOf="@id/descriptionInfo1"
+        android:layout_marginEnd="5dp"/>
+
+    <TextView
+        android:id="@+id/info1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="5dp"
+        android:gravity="center"
+        tools:text="Tipo"
+        app:layout_constraintStart_toStartOf="@id/viewTipo"
+        app:layout_constraintEnd_toEndOf="@id/viewTipo"
+        app:layout_constraintTop_toTopOf="@id/viewTipo"
+        app:layout_constraintBottom_toBottomOf="@id/viewTipo"
+        android:textColor="@color/darkAcidGreen"/>
+
+    <TextView
+        android:id="@+id/descriptionInfo2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="5dp"
+        android:gravity="center"
+        tools:text="DescrInfo2 "
+        app:layout_constraintStart_toStartOf="@id/gv1"
+        app:layout_constraintEnd_toEndOf="@id/viewDimension"
+        app:layout_constraintTop_toBottomOf="@id/viewTipo"
+        app:layout_constraintBottom_toTopOf="@id/viewDimension"
+        android:textColor="@color/darkAcidGreen"/>
+
+    <View
+        android:id="@+id/viewDimension"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toEndOf="@id/gv1"
+        app:layout_constraintTop_toBottomOf="@id/descriptionInfo2"
+        app:layout_constraintBottom_toTopOf="@id/gh2"
+        app:layout_constraintEnd_toStartOf="@id/gv2"
+        android:background="@color/lightAcidGreen"
+        android:layout_marginEnd="5dp"/>
+
+    <TextView
+        android:id="@+id/info2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="5dp"
+        android:gravity="center"
+        tools:text="Dimension"
+        app:layout_constraintStart_toStartOf="@id/viewDimension"
+        app:layout_constraintEnd_toEndOf="@id/viewDimension"
+        app:layout_constraintTop_toTopOf="@id/viewDimension"
+        app:layout_constraintBottom_toBottomOf="@id/viewDimension"
+        android:textColor="@color/darkAcidGreen"/>
+
+    <include layout="@layout/recyclerview_fragments"
+        android:id="@+id/itemRecyclerFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toEndOf="@id/gv2"
+        app:layout_constraintEnd_toStartOf="@id/gv3"
+        app:layout_constraintTop_toBottomOf="@id/gh1"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

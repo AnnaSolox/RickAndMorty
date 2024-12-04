@@ -13,11 +13,23 @@
         <item name="bottomNavigationStyle">@style/CustomBottomNavigationView</item>
         <item name="textAppearanceTitleLarge">@style/titulosFragmentsIndividuales</item>
         <item name="colorSecondaryContainer">@color/acidBlue</item>
+        <item name="navigationRailStyle">@style/navigationRaiCustom</item>
 
     </style>
 
     <style name="Theme.RickAndMorty" parent="Base.Theme.RickAndMorty" />
 
+    <style name="navigationRaiCustom" parent="Widget.Material3.NavigationRailView">
+        <item name="colorSurface">@color/darkAcidGreen</item>
+        <item name="backgroundTint">@color/darkAcidGreen</item>
+        <item name="itemIconTint">@color/white</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="itemIconSize">32dp</item>
+        <item name="textFillColor">@color/white</item>
+        <item name="itemTextColor">@color/white</item>
+
+    </style>
+    
     <style name="titulosFragmentsIndividuales" parent="TextAppearance.AppCompat.Title">
         <item name="fontFamily">@font/rickandmorty_font</item>
         <item name="android:textSize">32sp</item>

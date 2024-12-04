@@ -67,21 +67,41 @@ public class SecondActivity extends AppCompatActivity {
         ).build();
 
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(binding.bottomNav, navController);
-        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-            // Lista de fragmentos donde se muestra el BottomNavigationView
-            List<Integer> fragmentsConBottomNav = Arrays.asList(
-                    R.id.episodiosFragment,
-                    R.id.personajesFragment,
-                    R.id.localizacionesFragment
-            );
+        if (binding.bottomNav != null) {
+            NavigationUI.setupWithNavController(binding.bottomNav, navController);
+            navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+                // Lista de fragmentos donde se muestra el BottomNavigationView
+                List<Integer> fragmentsConBottomNav = Arrays.asList(
+                        R.id.episodiosFragment,
+                        R.id.personajesFragment,
+                        R.id.localizacionesFragment
+                );
 
-            if (fragmentsConBottomNav.contains(destination.getId())) {
-                binding.bottomNav.setVisibility(View.VISIBLE);
-            } else {
-                binding.bottomNav.setVisibility(View.GONE);
-            }
-        });
+                if (fragmentsConBottomNav.contains(destination.getId())) {
+                    binding.bottomNav.setVisibility(View.VISIBLE);
+                } else {
+                    binding.bottomNav.setVisibility(View.GONE);
+                }
+            });
+        } else if (binding.navigationRail != null) {
+            NavigationUI.setupWithNavController(binding.navigationRail, navController);
+            navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+                // Lista de fragmentos donde se muestra el NavigationRailView
+                List<Integer> fragmentsConBottomNav = Arrays.asList(
+                        R.id.episodiosFragment,
+                        R.id.personajesFragment,
+                        R.id.localizacionesFragment
+                );
+
+                if (fragmentsConBottomNav.contains(destination.getId())) {
+                    binding.navigationRail.setVisibility(View.VISIBLE);
+                } else {
+                    binding.navigationRail.setVisibility(View.GONE);
+                }
+            });
+        }
+
+
     }
 
     /**
