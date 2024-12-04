@@ -70,7 +70,7 @@ public class RecyclerViewEpisodios {
 
             @Override
             public boolean onQueryTextChange(String busqueda) {
-                episodiosAdapter.filtradoPorNombreYTemporada(busqueda);
+                episodiosAdapter.filtradoPorNombre(busqueda);
                 return true;
             }
         });

@@ -83,20 +83,13 @@ public class EpisodiosAdapter extends RecyclerView.Adapter<EpisodioViewHolder> {
     }
 
     /**
-     * Filtra la lista de episodios por el identificador de temporada y episodio o por el nombre del episodio.
+     * Filtra la lista de episodios por el nombre.
      *
-     * @param filtro El texto de filtro para buscar en el identificador / nombre de los episodios.
+     * @param filtro El texto de filtro para buscar en el nombre de los episodios.
      */
     @SuppressLint("NotifyDataSetChanged")
-    public void filtradoPorNombreYTemporada(String filtro) {
-        if (filtro.isEmpty()) {
-            episodios = new ArrayList<>(episodiosOriginal);
-        } else {
-            episodios = FiltradoUtilidad.filtro(episodiosOriginal, filtro, (item, textoFiltro) ->
-                    item.getNombre().toLowerCase().contains(textoFiltro.toLowerCase()) ||
-                            item.getIdentificador().toLowerCase().contains(textoFiltro.toLowerCase())
-            );
-        }
+    public void filtradoPorNombre(String filtro) {
+        episodios = FiltradoUtilidad.filtro(episodiosOriginal, filtro, (item, textoFiltro) -> item.getNombre().toLowerCase().contains(textoFiltro.toLowerCase()));
         notifyDataSetChanged();
     }
 }
