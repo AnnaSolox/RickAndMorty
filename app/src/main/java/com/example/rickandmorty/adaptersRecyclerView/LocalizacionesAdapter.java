@@ -79,7 +79,7 @@ public class LocalizacionesAdapter extends RecyclerView.Adapter<LocalizacionView
     }
 
     /**
-     * Filtra la lista de localizaciones por nombre.
+     * Filtra la lista de localizaciones por nombre o tipo.
      *
      * @param filtro Texto a filtrar.
      */
