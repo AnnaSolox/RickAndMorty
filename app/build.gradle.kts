@@ -1,5 +1,9 @@
+import org.jetbrains.dokka.DokkaConfiguration
+
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    id("org.jetbrains.dokka")
 }
 
 android {
@@ -35,6 +39,26 @@ android {
     }
 }
 
+tasks.dokkaHtml.configure {
+    dokkaSourceSets {
+        named("main") {
+            documentedVisibilities.set(
+                setOf(
+                    DokkaConfiguration.Visibility.PUBLIC,
+                    DokkaConfiguration.Visibility.PROTECTED,
+                    DokkaConfiguration.Visibility.INTERNAL,
+                    DokkaConfiguration.Visibility.PRIVATE
+                )
+            )
+            includeNonPublic.set(true)
+            reportUndocumented.set(false)
+            skipDeprecated.set(false)
+            platform.set(org.jetbrains.dokka.Platform.jvm)
+            sourceRoots.setFrom(file("src/main/java")) 
+        }
+    }
+}
+
 dependencies {
 
     implementation(libs.appcompat)
@@ -60,6 +84,5 @@ dependencies {
     // Glide
     implementation(libs.glide)
 
-
-
+    //Dokka
 }
