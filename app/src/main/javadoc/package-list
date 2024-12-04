@@ -1,0 +1,10 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:com.example.rickandmorty.utils/FiltradoUtilidad.CriterioFiltrado///PointingToDeclaration/com/example/rickandmorty/utils/FiltradoUtilidad.CriterioFiltrado.html
+com.example.rickandmorty.activities
+com.example.rickandmorty.adaptersRecyclerView
+com.example.rickandmorty.fragments
+com.example.rickandmorty.models
+com.example.rickandmorty.utils
+com.example.rickandmorty.viewmodels
+
