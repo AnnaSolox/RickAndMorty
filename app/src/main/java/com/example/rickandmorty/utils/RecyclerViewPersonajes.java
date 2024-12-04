@@ -40,9 +40,9 @@ public class RecyclerViewPersonajes {
      *
      * @param context El contexto en el que se está configurando el RecyclerView.
      */
-    public void setupRecyclerView(Context context){
+    public void setupRecyclerView(Context context, int columns){
         recyclerView.setAdapter(personajesAdapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(context, 2));
+        recyclerView.setLayoutManager(new GridLayoutManager(context, columns));
     }
 
     /**

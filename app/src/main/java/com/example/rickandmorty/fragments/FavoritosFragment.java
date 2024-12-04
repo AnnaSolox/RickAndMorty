@@ -51,7 +51,7 @@ public class FavoritosFragment extends Fragment {
         personajesAdapter = new PersonajesAdapter(personajeViewModel, NavHostFragment.findNavController(this), R.id.action_favoritosFragment_to_mostrarPersonajeFragment);
 
         RecyclerViewPersonajes recyclerViewPersonajes = new RecyclerViewPersonajes(binding.itemRecycler, personajeViewModel, personajesAdapter);
-        recyclerViewPersonajes.setupRecyclerView(getContext());
+        recyclerViewPersonajes.setupRecyclerView(getContext(),3);
         recyclerViewPersonajes.observarFavoritos(getViewLifecycleOwner());
         recyclerViewPersonajes.configurarBusqueda(binding.searchBar);
         binding.tituloRecycler.setText(R.string.titulo_recycler_favoritos);

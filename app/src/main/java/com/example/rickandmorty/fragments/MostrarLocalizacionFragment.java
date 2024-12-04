@@ -53,7 +53,7 @@ public class MostrarLocalizacionFragment extends Fragment {
         personajeViewModel = new ViewModelProvider(requireActivity()).get(PersonajeViewModel.class);
         personajesAdapter = new PersonajesAdapter(personajeViewModel, NavHostFragment.findNavController(this), R.id.action_mostrarLocalizacionFragment_to_mostrarPersonajeFragment);
         RecyclerViewPersonajes recyclerViewPersonajes = new RecyclerViewPersonajes(binding.itemRecyclerFragment.itemRecycler, personajeViewModel, personajesAdapter);
-        recyclerViewPersonajes.setupRecyclerView(getContext());
+        recyclerViewPersonajes.setupRecyclerView(getContext(),2);
         recyclerViewPersonajes.observarPersonajes(getViewLifecycleOwner());
         recyclerViewPersonajes.configurarBusqueda(binding.itemRecyclerFragment.searchBar);
 

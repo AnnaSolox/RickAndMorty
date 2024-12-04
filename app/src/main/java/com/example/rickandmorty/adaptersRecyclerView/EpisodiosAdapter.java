@@ -83,24 +83,20 @@ public class EpisodiosAdapter extends RecyclerView.Adapter<EpisodioViewHolder> {
     }
 
     /**
-     * Filtra la lista de episodios por el nombre.
+     * Filtra la lista de episodios por el identificador de temporada y episodio o por el nombre del episodio.
      *
-     * @param filtro El texto de filtro para buscar en el nombre de los episodios.
+     * @param filtro El texto de filtro para buscar en el identificador / nombre de los episodios.
      */
     @SuppressLint("NotifyDataSetChanged")
-    public void filtradoPorNombre(String filtro) {
-        episodios = FiltradoUtilidad.filtro(episodiosOriginal, filtro, (item, textoFiltro) -> item.getNombre().toLowerCase().contains(textoFiltro.toLowerCase()));
-        notifyDataSetChanged();
-    }
-
-    /**
-     * Filtra la lista de episodios por el identificador de temporada y episodio.
-     *
-     * @param filtro El texto de filtro para buscar en el identificador de los episodios.
-     */
-    @SuppressLint("NotifyDataSetChanged")
-    public void filtradoPorTemporadaEpisodio(String filtro){
-        episodios = FiltradoUtilidad.filtro(episodiosOriginal, filtro, (item, textoFiltro) -> item.getIdentificador().toLowerCase().contains(textoFiltro.toLowerCase()));
+    public void filtradoPorNombreYTemporada(String filtro) {
+        if (filtro.isEmpty()) {
+            episodios = new ArrayList<>(episodiosOriginal);
+        } else {
+            episodios = FiltradoUtilidad.filtro(episodiosOriginal, filtro, (item, textoFiltro) ->
+                    item.getNombre().toLowerCase().contains(textoFiltro.toLowerCase()) ||
+                            item.getIdentificador().toLowerCase().contains(textoFiltro.toLowerCase())
+            );
+        }
         notifyDataSetChanged();
     }
 }

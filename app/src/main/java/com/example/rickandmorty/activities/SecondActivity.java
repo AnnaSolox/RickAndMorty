@@ -5,6 +5,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -100,8 +101,6 @@ public class SecondActivity extends AppCompatActivity {
                 }
             });
         }
-
-
     }
 
     /**
