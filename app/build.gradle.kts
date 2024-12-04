@@ -85,4 +85,5 @@ dependencies {
     implementation(libs.glide)
 
     //Dokka
+    implementation(kotlin("script-runtime"))
 }
