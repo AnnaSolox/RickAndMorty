@@ -6,6 +6,7 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 /**
  * Adaptador personalizado de Gson para serializar y deserializar objetos {@link LocalDate}.
@@ -13,6 +14,10 @@ import java.time.format.DateTimeFormatter;
  * JSON y viceversa, utilizando un formato de fecha específico.
  */
 public class LocalDateAdapter extends TypeAdapter<LocalDate> {
+
+    private static final DateTimeFormatter FORMATTER =
+            DateTimeFormatter.ofPattern("MMMM d, yyyy", Locale.ENGLISH);
+
     /**
      * Serializa un objeto {@link LocalDate} en formato JSON.
      *
@@ -22,7 +27,7 @@ public class LocalDateAdapter extends TypeAdapter<LocalDate> {
      */
     @Override
     public void write(JsonWriter out, LocalDate value) throws IOException {
-        out.value(value.toString());
+        out.value(value.format(FORMATTER));
     }
 
     /**
@@ -35,6 +40,6 @@ public class LocalDateAdapter extends TypeAdapter<LocalDate> {
     @Override
     public LocalDate read(JsonReader in) throws IOException {
         String dateStr = in.nextString();
-        return LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("MMMM d, yyyy"));
+        return LocalDate.parse(dateStr, FORMATTER);
     }
 }
