@@ -16,7 +16,7 @@ import com.bumptech.glide.Glide;
 import com.example.rickandmorty.R;
 import com.example.rickandmorty.adaptersRecyclerView.EpisodiosAdapter;
 import com.example.rickandmorty.databinding.FragmentMostrarPersonajeBinding;
-import com.example.rickandmorty.utils.RecyclerViewEpisodios;
+import com.example.rickandmorty.adaptersRecyclerView.RecyclerViewEpisodios;
 import com.example.rickandmorty.viewmodels.EpisodioViewModel;
 import com.example.rickandmorty.viewmodels.PersonajeViewModel;
 

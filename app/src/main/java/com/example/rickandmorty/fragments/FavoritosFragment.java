@@ -14,7 +14,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.rickandmorty.R;
 import com.example.rickandmorty.adaptersRecyclerView.PersonajesAdapter;
 import com.example.rickandmorty.databinding.RecyclerviewFragmentsBinding;
-import com.example.rickandmorty.utils.RecyclerViewPersonajes;
+import com.example.rickandmorty.adaptersRecyclerView.RecyclerViewPersonajes;
 import com.example.rickandmorty.viewmodels.PersonajeViewModel;
 
 /**

@@ -14,7 +14,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.rickandmorty.R;
 import com.example.rickandmorty.adaptersRecyclerView.LocalizacionesAdapter;
 import com.example.rickandmorty.databinding.RecyclerviewFragmentsBinding;
-import com.example.rickandmorty.utils.RecyclerViewLocalizaciones;
+import com.example.rickandmorty.adaptersRecyclerView.RecyclerViewLocalizaciones;
 import com.example.rickandmorty.viewmodels.LocalizacionViewModel;
 
 /**

@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.rickandmorty.R;
 import com.example.rickandmorty.adaptersRecyclerView.EpisodiosAdapter;
 import com.example.rickandmorty.databinding.RecyclerviewFragmentsBinding;
-import com.example.rickandmorty.utils.RecyclerViewEpisodios;
+import com.example.rickandmorty.adaptersRecyclerView.RecyclerViewEpisodios;
 import com.example.rickandmorty.viewmodels.EpisodioViewModel;
 
 /**

@@ -1,4 +1,4 @@
-package com.example.rickandmorty.utils;
+package com.example.rickandmorty.adaptersRecyclerView;
 
 import android.content.Context;
 import android.util.Log;
@@ -8,7 +8,6 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.rickandmorty.adaptersRecyclerView.EpisodiosAdapter;
 import com.example.rickandmorty.viewmodels.EpisodioViewModel;
 
 /**
