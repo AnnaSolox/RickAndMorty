@@ -1,7 +1,6 @@
 package com.example.rickandmorty.fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +14,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.bumptech.glide.Glide;
 import com.example.rickandmorty.R;
 import com.example.rickandmorty.adaptersRecyclerView.EpisodiosAdapter;
-import com.example.rickandmorty.databinding.FragmentMostrarPersonajeBinding;
 import com.example.rickandmorty.adaptersRecyclerView.RecyclerViewEpisodios;
+import com.example.rickandmorty.databinding.FragmentMostrarPersonajeBinding;
 import com.example.rickandmorty.viewmodels.EpisodioViewModel;
 import com.example.rickandmorty.viewmodels.PersonajeViewModel;
 
@@ -32,7 +31,6 @@ import java.util.Objects;
 public class MostrarPersonajeFragment extends Fragment {
     private FragmentMostrarPersonajeBinding binding;
     private EpisodioViewModel episodioViewModel;
-    private EpisodiosAdapter episodiosAdapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -54,7 +52,7 @@ public class MostrarPersonajeFragment extends Fragment {
 
         PersonajeViewModel personajeViewModel = new ViewModelProvider(requireActivity()).get(PersonajeViewModel.class);
         episodioViewModel = new ViewModelProvider(requireActivity()).get(EpisodioViewModel.class);
-        episodiosAdapter = new EpisodiosAdapter(episodioViewModel, NavHostFragment.findNavController(this), R.id.action_mostrarPersonajeFragment_to_mostrarEpisodioFragment);
+        EpisodiosAdapter episodiosAdapter = new EpisodiosAdapter(episodioViewModel, NavHostFragment.findNavController(this), R.id.action_mostrarPersonajeFragment_to_mostrarEpisodioFragment);
 
         RecyclerViewEpisodios recyclerViewEpisodios = new RecyclerViewEpisodios(binding.itemRecyclerFragment.itemRecycler, episodioViewModel, episodiosAdapter);
         recyclerViewEpisodios.setupRecyclerView(getContext());
@@ -88,15 +86,6 @@ public class MostrarPersonajeFragment extends Fragment {
                             ? R.drawable.ic_rm_fav_checked
                             : R.drawable.ic_rm_fav_unchecked);
                 });
-            }
-        });
-
-        episodioViewModel.getEpisodiosLiveData().observe(getViewLifecycleOwner(), episodios -> {
-            Log.d("PersonajesLocalizacion", "Tamaño de la lista de personajes: " + episodios.size());
-            if (!episodios.isEmpty()) {
-                episodiosAdapter.establecerLista(episodios);
-            } else {
-                Log.e("Personajes", "La lista de personajes está vacía.");
             }
         });
     }
