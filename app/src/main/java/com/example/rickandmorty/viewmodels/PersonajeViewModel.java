@@ -36,9 +36,9 @@ public class PersonajeViewModel extends AndroidViewModel {
     private final MutableLiveData<List<Personaje>> personajeLiveData = new MutableLiveData<>();
     @Getter
     private final MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
-     @Getter
+    @Getter
     private final Set<Personaje> favoritos = new HashSet<>();
-     @Getter
+    @Getter
     MutableLiveData<List<Personaje>> favoritosLiveData = new MutableLiveData<>();
 
     /**
@@ -76,9 +76,9 @@ public class PersonajeViewModel extends AndroidViewModel {
     public MutableLiveData<Personaje> seleccionado(){return personajeSeleccionado;}
 
     /**
-     * Obtiene el LiveData del personaje seleccionado.
-     *
-     * @return LiveData del personaje seleccionado.
+     * Inicia la carga de personajes desde la API de Rick and Morty.
+     * Realiza la solicitud y actualiza el LiveData con la lista de personajes.
+     * Si existen páginas adicionales, se cargarán automáticamente.
      */
     public void cargarPersonajes(){
         isLoading.setValue(true);
