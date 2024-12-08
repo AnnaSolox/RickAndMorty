@@ -16,7 +16,7 @@
     android:paddingHorizontal="20dp">
 
     <TextView
-        android:id="@+id/nombreEpisodio"
+        android:id="@+id/nombreItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/manrope_semibold"
@@ -28,7 +28,7 @@
         android:textColor="@color/darkAcidGreen"/>
 
     <TextView
-        android:id="@+id/identificadorEpisodio"
+        android:id="@+id/infoAdicionalItem"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textAlignment="textEnd"
@@ -41,7 +41,7 @@
         android:ellipsize="end"
         android:layout_marginStart="10dp"
         android:gravity="end"
-        app:layout_constraintStart_toEndOf="@id/nombreEpisodio"
+        app:layout_constraintStart_toEndOf="@id/nombreItem"
         android:textColor="@color/darkAcidGreen"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

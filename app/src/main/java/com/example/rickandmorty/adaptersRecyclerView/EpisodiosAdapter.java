@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.rickandmorty.databinding.ItemEpisodioBinding;
+import com.example.rickandmorty.databinding.ItemEpisodioLocalizacionBinding;
 import com.example.rickandmorty.models.Episodio;
 import com.example.rickandmorty.utils.FiltradoUtilidad;
 import com.example.rickandmorty.viewmodels.EpisodioViewModel;
@@ -24,7 +24,7 @@ import java.util.List;
  * {@link NavController} para manejar la navegación entre fragmentos al seleccionar un episodio.
  * </p>
  */
-public class EpisodiosAdapter extends RecyclerView.Adapter<EpisodioViewHolder> {
+public class EpisodiosAdapter extends RecyclerView.Adapter<EpisodioLocalizacionViewHolder> {
     private List<Episodio> episodios = new ArrayList<>();
     private List<Episodio> episodiosOriginal;
     private final NavController navController;
@@ -47,16 +47,16 @@ public class EpisodiosAdapter extends RecyclerView.Adapter<EpisodioViewHolder> {
 
     @NonNull
     @Override
-    public EpisodioViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new EpisodioViewHolder(ItemEpisodioBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+    public EpisodioLocalizacionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new EpisodioLocalizacionViewHolder(ItemEpisodioLocalizacionBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull EpisodioViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull EpisodioLocalizacionViewHolder holder, int position) {
         Episodio episodio = episodios.get(position);
 
-        holder.binding.nombreEpisodio.setText(episodio.getNombre());
-        holder.binding.identificadorEpisodio.setText(episodio.getIdentificador());
+        holder.binding.nombreItem.setText(episodio.getNombre());
+        holder.binding.infoAdicionalItem.setText(episodio.getIdentificador());
 
         holder.itemView.setOnClickListener(view -> {
             episodioViewModel.seleccionar(episodio);
