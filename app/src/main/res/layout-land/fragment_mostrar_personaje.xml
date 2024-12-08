@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".5" />
+        app:layout_constraintGuide_percent=".6" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gh1"
@@ -200,6 +200,7 @@
         android:text="@string/seccion1_mostrar_personaje"
         android:textColor="@color/white"
         android:textSize="12sp"
+        android:layout_marginStart="10dp"
         app:layout_constraintStart_toEndOf="@id/gv4"
         app:layout_constraintTop_toBottomOf="@id/gh1"
         app:layout_constraintBottom_toTopOf="@id/valorEstado" />
